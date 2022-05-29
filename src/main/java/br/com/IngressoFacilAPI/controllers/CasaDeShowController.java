@@ -1,7 +1,6 @@
 package br.com.IngressoFacilAPI.controllers;
 
 import javax.validation.Valid;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -15,14 +14,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import br.com.IngressoFacilAPI.entities.casaDeShow.dto.CasaDeShowDto;
 import br.com.IngressoFacilAPI.entities.casaDeShow.form.CasaDeShowForm;
 import br.com.IngressoFacilAPI.services.CasaDeShowService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/casaDeShow")
+@RequestMapping("/admin/casaDeShow")
 @RequiredArgsConstructor
 public class CasaDeShowController {
 

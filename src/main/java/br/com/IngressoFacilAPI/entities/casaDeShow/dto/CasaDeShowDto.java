@@ -1,6 +1,5 @@
 package br.com.IngressoFacilAPI.entities.casaDeShow.dto;
 
-import org.springframework.data.domain.Page;
 import br.com.IngressoFacilAPI.entities.casaDeShow.CasaDeShow;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +20,4 @@ public class CasaDeShowDto {
 		this.endereco = casaDeShow.getEndereco();
 	}
 
-	public static Page<CasaDeShowDto> converter(Page<CasaDeShow> casas) {
-		return casas.map(CasaDeShowDto::new);
-	}
 }
