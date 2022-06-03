@@ -3,9 +3,9 @@ package br.com.IngressoFacilAPI.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.IngressoFacilAPI.entities.casaDeShow.CasaDeShow;
+import br.com.IngressoFacilAPI.entities.Local.Local;
 
 @Repository
-public interface CasaDeShowRepository extends JpaRepository<CasaDeShow, Long> {
+public interface LocalRepository extends JpaRepository<Local, Long> {
 
 }

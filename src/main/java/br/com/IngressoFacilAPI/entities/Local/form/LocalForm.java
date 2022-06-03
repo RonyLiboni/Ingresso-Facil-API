@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.entities.casaDeShow.form;
+package br.com.IngressoFacilAPI.entities.Local.form;
 
 import javax.validation.constraints.NotBlank;
 
@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CasaDeShowForm {
+public class LocalForm {
 	
 	@NotBlank
 	private String nome;

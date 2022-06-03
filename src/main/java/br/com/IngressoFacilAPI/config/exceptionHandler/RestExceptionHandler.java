@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.exceptionHandler;
+package br.com.IngressoFacilAPI.config.exceptionHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import br.com.IngressoFacilAPI.exceptionHandler.exceptions.ErroDeFormularioDto;
-import br.com.IngressoFacilAPI.exceptionHandler.exceptions.IdNotFoundException;
+import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.ErroDeFormularioDto;
+import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.IdNotFoundException;
 
 @RestControllerAdvice
 public class RestExceptionHandler {
@@ -48,5 +48,10 @@ public class RestExceptionHandler {
 	public String jsonComSintaxeErrada(HttpMessageNotReadableException exception) {
 		return exception.getMessage();
 	}
-
+	
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(IllegalArgumentException.class)
+	public String jsonComSintaxeErrada(IllegalArgumentException exception) {
+		return exception.getMessage();
+	}
 }

@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.entities.casaDeShow;
+package br.com.IngressoFacilAPI.entities.Local;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +12,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class CasaDeShow {
+public class Local {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

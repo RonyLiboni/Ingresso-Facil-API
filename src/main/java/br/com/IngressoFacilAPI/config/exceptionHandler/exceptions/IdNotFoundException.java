@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.exceptionHandler.exceptions;
+package br.com.IngressoFacilAPI.config.exceptionHandler.exceptions;
 
 public class IdNotFoundException extends RuntimeException {
 	
