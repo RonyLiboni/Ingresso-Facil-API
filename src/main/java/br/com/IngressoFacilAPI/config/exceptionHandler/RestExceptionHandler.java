@@ -1,8 +1,10 @@
 package br.com.IngressoFacilAPI.config.exceptionHandler;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.tomcat.util.http.fileupload.FileUploadException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -39,7 +41,7 @@ public class RestExceptionHandler {
 
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
 	@ExceptionHandler(IdNotFoundException.class)
-	public String IdNaoExiste(IdNotFoundException exception) {
+	public String idNaoExiste(IdNotFoundException exception) {
 		return exception.getMessage();
 	}
 
@@ -51,7 +53,19 @@ public class RestExceptionHandler {
 	
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(IllegalArgumentException.class)
-	public String jsonComSintaxeErrada(IllegalArgumentException exception) {
+	public String idIncorretoNaCriacaoOuAtualizacaoDeEvento(IllegalArgumentException exception) {
+		return exception.getMessage();
+	}
+	
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(FileNotFoundException.class)
+	public String naoEnviouImagemNaTentativaDeUpload(FileNotFoundException exception) {
+		return exception.getMessage();
+	}
+	
+	@ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
+	@ExceptionHandler(FileUploadException.class)
+	public String imagemNaoFoiSalvaPorErroNoServidor(FileUploadException exception) {
 		return exception.getMessage();
 	}
 }

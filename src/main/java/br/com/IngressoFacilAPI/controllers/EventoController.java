@@ -29,7 +29,7 @@ import lombok.RequiredArgsConstructor;
 public class EventoController {
 
 	private final EventoService eventoService;
-	
+
 	@GetMapping
 	public ResponseEntity<Page<EventoDto>> listar(@PageableDefault() Pageable paginacao) {
 		return ResponseEntity.status(HttpStatus.OK).body(eventoService.listar(paginacao));
@@ -55,13 +55,12 @@ public class EventoController {
 		eventoService.deletarPeloId(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
-		
+
 	@PutMapping("/{id}/imagemEvento")
-	public ResponseEntity<Object> atualizarImagemDoEvento(@PathVariable Long id, @RequestParam("imagemEvento") MultipartFile imagemEvento) throws Exception{
-		if (imagemEvento.isEmpty()) 
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("É obrigatório fazer o upload de uma imagem!");
-		
-		return ResponseEntity.ok("Imagem salva em "+eventoService.atualizarImagemDoEvento(id, imagemEvento));
-	}	
-	
+	public ResponseEntity<String> atualizarImagemDoEvento(@PathVariable Long id,
+			@RequestParam("imagemEvento") MultipartFile imagemEvento) throws Exception {
+		return ResponseEntity.status(HttpStatus.OK)
+				.body("Imagem salva em " + eventoService.atualizarImagemDoEvento(id, imagemEvento));
+	}
+
 }
