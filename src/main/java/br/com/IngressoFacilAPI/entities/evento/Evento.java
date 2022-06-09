@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -23,22 +22,17 @@ import lombok.Setter;
 @Setter
 public class Evento {
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column (nullable = false, length = 250)
 	private String nome;
-	@Column (nullable = false)
 	private BigDecimal valor;
-	@Column (nullable = false)
 	@Enumerated(EnumType.STRING)
 	private TipoDeEvento tipo;
 	@ManyToOne (fetch = FetchType.EAGER)
 	private Local local;
-	@Column (nullable = false)
 	private LocalDate dataEvento;
-	@Column (nullable = false)
 	private LocalTime horaEvento;
-	@Column (nullable = false)
 	private Integer quantidadeIngressos;
 	private Integer quantidadeIngressosVendidos=0;
 	private Integer quantidadeIngressosDisponiveis;
