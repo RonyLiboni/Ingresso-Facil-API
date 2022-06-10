@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
 import br.com.IngressoFacilAPI.entities.evento.dto.EventoDto;
 import br.com.IngressoFacilAPI.entities.evento.form.EventoForm;
 import br.com.IngressoFacilAPI.services.EventoService;
@@ -47,7 +46,7 @@ public class EventoController {
 
 	@PutMapping("/{id}")
 	public ResponseEntity<EventoDto> atualizar(@PathVariable Long id, @RequestBody @Valid EventoForm form) {
-		return ResponseEntity.status(HttpStatus.NO_CONTENT).body(eventoService.atualizarCadastro(id, form));
+		return ResponseEntity.status(HttpStatus.OK).body(eventoService.atualizarCadastro(id, form));
 	}
 
 	@DeleteMapping("/{id}")

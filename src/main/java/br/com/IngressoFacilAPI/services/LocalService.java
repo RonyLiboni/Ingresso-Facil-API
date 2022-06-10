@@ -20,13 +20,11 @@ public class LocalService {
 	private final LocalRepository localRepository;
 	
 	public Page<LocalDto> listar(Pageable paginacao){
-		Page<Local> casas = localRepository.findAll(paginacao);
-		return converterParaDto(casas);
+		return converterParaDto(localRepository.findAll(paginacao));
 	}
 	
-	public LocalDto cadastrar(LocalForm form) {
-		Local casa = converterParaCasaDeShow(form);	
-		return new LocalDto(salvar(casa));
+	public LocalDto cadastrar(LocalForm form) {	
+		return new LocalDto(salvar(converterParaCasaDeShow(form)));
 	}
 	
 	@Transactional
@@ -37,6 +35,11 @@ public class LocalService {
 	public LocalDto procurarPeloId(Long id) {
 		idNaoExistenteJogaException(id);
 		return new LocalDto(localRepository.findById(id).get());
+	}
+	
+	public Local retornaOLocalPeloId(Long id) {
+		idNaoExistenteJogaException(id);
+		return localRepository.findById(id).get();
 	}
 	
 	public LocalDto atualizarCadastro(Long id, LocalForm form){
@@ -63,7 +66,7 @@ public class LocalService {
 		return casas.map(LocalDto::new);
 	}
 	
-	private void idNaoExistenteJogaException(Long id) {
+	public void idNaoExistenteJogaException(Long id) {
 		if (localRepository.existsById(id)) return;
 		
 		throw new IdNotFoundException("O Id do "+toString()+" informado não existe!");

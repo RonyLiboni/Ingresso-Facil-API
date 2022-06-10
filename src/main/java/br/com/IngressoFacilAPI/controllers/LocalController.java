@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.IngressoFacilAPI.entities.Local.dto.LocalDto;
 import br.com.IngressoFacilAPI.entities.Local.form.LocalForm;
 import br.com.IngressoFacilAPI.services.LocalService;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -26,31 +27,36 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LocalController {
 
-	private final LocalService casaDeShowService;
+	private final LocalService localService;
 
 	@GetMapping
+	@ApiOperation(value="Retorna uma página com os locais cadastrados")
 	public ResponseEntity<Page<LocalDto>> listar(@PageableDefault() Pageable paginacao) {
-		return ResponseEntity.status(HttpStatus.OK).body(casaDeShowService.listar(paginacao));
+		return ResponseEntity.status(HttpStatus.OK).body(localService.listar(paginacao));
 	}
 
 	@PostMapping
+	@ApiOperation(value="Cria um novo local")
 	public ResponseEntity<LocalDto> cadastrar(@RequestBody @Valid LocalForm form) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(casaDeShowService.cadastrar(form));
+		return ResponseEntity.status(HttpStatus.CREATED).body(localService.cadastrar(form));
 	}
 
 	@GetMapping("/{id}")
+	@ApiOperation(value="Retorna um local através do seu Id")
 	public ResponseEntity<LocalDto> procurar(@PathVariable Long id) {
-		return ResponseEntity.status(HttpStatus.OK).body(casaDeShowService.procurarPeloId(id));
+		return ResponseEntity.status(HttpStatus.OK).body(localService.procurarPeloId(id));
 	}
 
 	@PutMapping("/{id}")
+	@ApiOperation(value="Atualiza um local através do seu Id")
 	public ResponseEntity<LocalDto> atualizar(@PathVariable Long id, @RequestBody @Valid LocalForm form) {
-		return ResponseEntity.status(HttpStatus.OK).body(casaDeShowService.atualizarCadastro(id, form));
+		return ResponseEntity.status(HttpStatus.OK).body(localService.atualizarCadastro(id, form));
 	}
-
+	
 	@DeleteMapping("/{id}")
+	@ApiOperation(value="Exclui um local através do seu Id")
 	public ResponseEntity<Object> deletar(@PathVariable Long id) {
-		casaDeShowService.deletarPeloId(id);
+		localService.deletarPeloId(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 }

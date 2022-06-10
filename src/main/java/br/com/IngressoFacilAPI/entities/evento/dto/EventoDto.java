@@ -23,6 +23,7 @@ public class EventoDto {
 	private LocalDate dataEvento;
 	private LocalTime horaEvento;
 	private Integer quantidadeIngressos;
+	private String caminhoImagemDoEvento;
 
 	public EventoDto(Evento evento) {
 		this.id = evento.getId();
@@ -33,5 +34,6 @@ public class EventoDto {
 		this.dataEvento = evento.getDataEvento();
 		this.horaEvento = evento.getHoraEvento();
 		this.quantidadeIngressos = evento.getQuantidadeIngressos();
+		this.caminhoImagemDoEvento = evento.getCaminhoImagemDoEvento();
 	}
 }

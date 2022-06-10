@@ -80,17 +80,13 @@ public class EventoService {
 		evento.setNome(form.getNome());
 		evento.setValor(form.getValor());
 		evento.setTipo(form.getTipo());
-		verificaSeLocalExiste(form.getLocal());
-		evento.setLocal(form.getLocal());
+		evento.setLocal(localService.retornaOLocalPeloId(form.getLocalId()));
 		evento.setDataEvento(form.getDataEvento());
 		evento.setHoraEvento(form.getHoraEvento());
 		evento.setQuantidadeIngressos(form.getQuantidadeIngressos());
 		return evento;
 	}
 
-	private void verificaSeLocalExiste(Local local) {
-		localService.procurarPeloId(local.getId());
-	}
 
 	private Page<EventoDto> converterParaDto(Page<Evento> eventos) {
 		return eventos.map(EventoDto::new);

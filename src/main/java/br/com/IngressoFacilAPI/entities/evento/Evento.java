@@ -35,7 +35,7 @@ public class Evento {
 	private LocalTime horaEvento;
 	private Integer quantidadeIngressos;
 	private Integer quantidadeIngressosVendidos=0;
-	private Integer quantidadeIngressosDisponiveis;
+	private Integer quantidadeIngressosDisponiveis=0;
 	private String caminhoImagemDoEvento;
 
 }

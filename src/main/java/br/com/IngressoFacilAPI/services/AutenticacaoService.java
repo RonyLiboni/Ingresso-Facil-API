@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class AutenticacaoService implements UserDetailsService {
-	
+
 	private final UsuarioRepository usuarioRepository;
 
 	@Override
@@ -18,5 +18,4 @@ public class AutenticacaoService implements UserDetailsService {
 		return usuarioRepository.findByEmail(username)
 				.orElseThrow(() -> new UsernameNotFoundException("Dados inválidos!"));
 	}
-
 }
