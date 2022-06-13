@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.IdNotFoundException;
-import br.com.IngressoFacilAPI.entities.Local.Local;
 import br.com.IngressoFacilAPI.entities.evento.Evento;
 import br.com.IngressoFacilAPI.entities.evento.dto.EventoDto;
 import br.com.IngressoFacilAPI.entities.evento.form.EventoForm;
+import br.com.IngressoFacilAPI.repositories.ClienteRepository;
 import br.com.IngressoFacilAPI.repositories.EventoRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -26,13 +26,14 @@ public class EventoService {
 
 	private final EventoRepository eventoRepository;
 	private final LocalService localService;
+	private final ClienteRepository clienteRepository;
 
-	public Page<EventoDto> listar(Pageable paginacao) {
-		return converterParaDto(eventoRepository.findAll(paginacao));
+	public Page<Evento> listar(Pageable paginacao) {
+		return eventoRepository.findAll(paginacao);
 	}
 
-	public EventoDto cadastrar(EventoForm form) {
-		return new EventoDto(salvar(converterParaEvento(form)));
+	public Evento cadastrar(EventoForm form) {
+		return salvar(converterParaEvento(form));
 	}
 
 	@Transactional
@@ -40,18 +41,27 @@ public class EventoService {
 		return eventoRepository.save(evento);
 	}
 
-	public EventoDto procurarPeloId(Long id) {
-		idNaoExistenteJogaException(id);
-		return new EventoDto(eventoRepository.findById(id).get());
+	public Evento procurarPeloId(Long id) {
+		return eventoRepository.findById(id)
+				.orElseThrow(() -> new IdNotFoundException("O Id do " + toString() + " informado não existe!"));
 	}
 
-	public EventoDto atualizarCadastro(Long id, EventoForm form) {
-		idNaoExistenteJogaException(id);
-		Evento evento = converterParaEvento(form);
-		evento.setId(id);
-		// processo de atualização dos outros atributos
+	public Evento atualizarCadastro(Long id, EventoForm form) {
+		Evento evento = procurarPeloId(id);
+		evento.setNome(form.getNome());
+		evento.setValor(form.getValor());
+		evento.setTipo(form.getTipo());
+		evento.setLocal(localService.procurarPeloId(form.getLocalId()));
+		evento.setDataEvento(form.getDataEvento());
+		evento.setHoraEvento(form.getHoraEvento());
+		evento.setQuantidadeIngressos(form.getQuantidadeIngressos());
+		evento.setQuantidadeIngressosVendidos(atualizaQuantidadeIngressosVendidos(id));
+		evento.setQuantidadeIngressosDisponiveis(evento.getQuantidadeIngressos() - evento.getQuantidadeIngressosVendidos());
+		return salvar(evento);
+	}
 
-		return new EventoDto(salvar(evento));
+	private Integer atualizaQuantidadeIngressosVendidos(Long id) {
+		return clienteRepository.quantidadeDeIngressosVendidosPorEvento(id);
 	}
 
 	@Transactional
@@ -61,14 +71,15 @@ public class EventoService {
 	}
 
 	public String atualizarImagemDoEvento(Long id, MultipartFile imagemEvento) throws Exception {
-		idNaoExistenteJogaException(id);
 		if (imagemEvento.isEmpty())
 			throw new FileNotFoundException("É obrigatório fazer o upload de uma imagem!");
 
 		String caminhoImagem = criarCaminhoDaImagem(id, imagemEvento.getContentType());
+		Evento evento = procurarPeloId(id);
 		try {
 			imagemEvento.transferTo(new File(caminhoImagem));
-			atualizarCaminhodaImagem(id, caminhoImagem);
+			evento.setCaminhoImagemDoEvento(caminhoImagem);
+			salvar(evento);
 		} catch (Exception e) {
 			throw new FileUploadException("Houve um erro no servidor e não foi possível atualizar a imagem!");
 		}
@@ -80,30 +91,24 @@ public class EventoService {
 		evento.setNome(form.getNome());
 		evento.setValor(form.getValor());
 		evento.setTipo(form.getTipo());
-		evento.setLocal(localService.retornaOLocalPeloId(form.getLocalId()));
+		evento.setLocal(localService.procurarPeloId(form.getLocalId()));
 		evento.setDataEvento(form.getDataEvento());
 		evento.setHoraEvento(form.getHoraEvento());
 		evento.setQuantidadeIngressos(form.getQuantidadeIngressos());
+		evento.setQuantidadeIngressosDisponiveis(form.getQuantidadeIngressos());
+		evento.setCaminhoImagemDoEvento("/imagensDosEventos/imagemPadrao.jpg");
 		return evento;
 	}
 
 
-	private Page<EventoDto> converterParaDto(Page<Evento> eventos) {
+	public Page<EventoDto> converterParaDto(Page<Evento> eventos) {
 		return eventos.map(EventoDto::new);
 	}
 
 	private void idNaoExistenteJogaException(Long id) {
 		if (eventoRepository.existsById(id))
 			return;
-
 		throw new IdNotFoundException("O Id do " + toString() + " informado não existe!");
-	}
-
-	@Transactional
-	private void atualizarCaminhodaImagem(Long id, String caminhoImagem) {
-		Evento evento = eventoRepository.findById(id).get();
-		evento.setCaminhoImagemDoEvento(caminhoImagem);
-		salvar(evento);
 	}
 
 	private String criarCaminhoDaImagem(Long id, String tipoDeArquivo) throws IOException {

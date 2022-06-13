@@ -8,6 +8,7 @@ import springfox.documentation.service.ResponseMessage;
 
 public final class GlobalResponses {
 	
+	@SuppressWarnings("serial")
 	public static List<ResponseMessage> responseMessageForGET() {
 	    return new ArrayList<ResponseMessage>() {
 		{
@@ -16,7 +17,7 @@ public final class GlobalResponses {
 	        add(httpCode403_Forbidden());
 	    }};
 	}
-	
+	@SuppressWarnings("serial")
 	public static List<ResponseMessage> responseMessageForPOST() {
 	    return new ArrayList<ResponseMessage>() {{
 	        add(httpCode201_Created());
@@ -25,7 +26,7 @@ public final class GlobalResponses {
 	        add(httpCode403_Forbidden());
 	    }};
 	}
-	
+	@SuppressWarnings("serial")
 	public static List<ResponseMessage> responseMessageForPUT() {
 	    return new ArrayList<ResponseMessage>() {{
 	        add(httpCode200_Ok());
@@ -35,7 +36,7 @@ public final class GlobalResponses {
 	    }};
 	}
 	
-	
+	@SuppressWarnings("serial")
 	public static List<ResponseMessage> responseMessageForDELETE() {
 	    return new ArrayList<ResponseMessage>() {{
 	        add(httpCode204_NoContent());

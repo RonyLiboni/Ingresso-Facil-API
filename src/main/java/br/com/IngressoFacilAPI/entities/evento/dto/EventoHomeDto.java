@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class EventoDto {
+public class EventoHomeDto {
 	private Long id;
 	private String nome;
 	private BigDecimal valor;
@@ -22,12 +22,10 @@ public class EventoDto {
 	private Local local;
 	private LocalDate dataEvento;
 	private LocalTime horaEvento;
-	private Integer quantidadeIngressos;
 	private String caminhoImagemDoEvento;
-	private Integer quantidadeIngressosVendidos;
 	private Integer quantidadeIngressosDisponiveis;
 
-	public EventoDto(Evento evento) {
+	public EventoHomeDto(Evento evento) {
 		this.id = evento.getId();
 		this.nome = evento.getNome();
 		this.valor = evento.getValor();
@@ -35,10 +33,8 @@ public class EventoDto {
 		this.local = evento.getLocal();
 		this.dataEvento = evento.getDataEvento();
 		this.horaEvento = evento.getHoraEvento();
-		this.quantidadeIngressos = evento.getQuantidadeIngressos();
 		this.caminhoImagemDoEvento = evento.getCaminhoImagemDoEvento();
 		this.quantidadeIngressosDisponiveis =  evento.getQuantidadeIngressosDisponiveis();
-		this.quantidadeIngressosVendidos = evento.getQuantidadeIngressosVendidos();
-	}
 
+	}
 }

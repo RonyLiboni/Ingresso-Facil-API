@@ -17,5 +17,4 @@ public class Ingresso {
 	private BigDecimal valorIngresso;
 	private Integer quantidadeIngressosComprados;
 
-	
 }

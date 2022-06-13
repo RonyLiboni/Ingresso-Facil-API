@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.controllers;
+package br.com.IngressoFacilAPI.controllers.adminPlataforma;
 
 import javax.validation.Valid;
 
@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/admin/local")
+@RequestMapping("/v1/admin/local")
 @RequiredArgsConstructor
 public class LocalController {
 
@@ -32,25 +32,25 @@ public class LocalController {
 	@GetMapping
 	@ApiOperation(value="Retorna uma página com os locais cadastrados")
 	public ResponseEntity<Page<LocalDto>> listar(@PageableDefault() Pageable paginacao) {
-		return ResponseEntity.status(HttpStatus.OK).body(localService.listar(paginacao));
+		return ResponseEntity.status(HttpStatus.OK).body(localService.listar(paginacao).map(LocalDto::new));
 	}
 
 	@PostMapping
 	@ApiOperation(value="Cria um novo local")
 	public ResponseEntity<LocalDto> cadastrar(@RequestBody @Valid LocalForm form) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(localService.cadastrar(form));
+		return ResponseEntity.status(HttpStatus.CREATED).body(new LocalDto(localService.cadastrar(form)));
 	}
 
 	@GetMapping("/{id}")
 	@ApiOperation(value="Retorna um local através do seu Id")
 	public ResponseEntity<LocalDto> procurar(@PathVariable Long id) {
-		return ResponseEntity.status(HttpStatus.OK).body(localService.procurarPeloId(id));
+		return ResponseEntity.status(HttpStatus.OK).body(new LocalDto(localService.procurarPeloId(id)));
 	}
 
 	@PutMapping("/{id}")
 	@ApiOperation(value="Atualiza um local através do seu Id")
 	public ResponseEntity<LocalDto> atualizar(@PathVariable Long id, @RequestBody @Valid LocalForm form) {
-		return ResponseEntity.status(HttpStatus.OK).body(localService.atualizarCadastro(id, form));
+		return ResponseEntity.status(HttpStatus.OK).body(new LocalDto(localService.atualizarCadastro(id, form)));
 	}
 	
 	@DeleteMapping("/{id}")

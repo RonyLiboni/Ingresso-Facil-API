@@ -43,7 +43,7 @@ public class EventoForm {
 	private LocalTime horaEvento;
 	@NotNull
 	@Digits(fraction=0 ,integer =10)
-	@ApiModelProperty(example = "1", position =6)
+	@ApiModelProperty(example = "1000", position =6)
 	private Integer quantidadeIngressos;
 
 }
