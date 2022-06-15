@@ -23,6 +23,7 @@ import br.com.IngressoFacilAPI.entities.evento.form.EventoForm;
 import br.com.IngressoFacilAPI.services.EventoService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping("/v1/admin/evento")
@@ -32,38 +33,38 @@ public class EventoController {
 	private final EventoService eventoService;
 
 	@GetMapping
-	@ApiOperation(value="Retorna uma página com os eventos cadastrados")
-	public ResponseEntity<Page<EventoDto>> listar(@PageableDefault() Pageable paginacao) {
+	@ApiOperation(value = "Retorna uma página com os eventos cadastrados")
+	public ResponseEntity<Page<EventoDto>> listar(@ApiIgnore() @PageableDefault() Pageable paginacao) {
 		return ResponseEntity.status(HttpStatus.OK).body(eventoService.listar(paginacao).map(EventoDto::new));
 	}
 
 	@PostMapping
-	@ApiOperation(value="Cria um novo evento")
+	@ApiOperation(value = "Cria um novo evento")
 	public ResponseEntity<EventoDto> cadastrar(@RequestBody @Valid EventoForm form) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(new EventoDto(eventoService.cadastrar(form)));
 	}
 
 	@GetMapping("/{id}")
-	@ApiOperation(value="Retorna um evento através do seu Id")
+	@ApiOperation(value = "Retorna um evento através do seu Id")
 	public ResponseEntity<EventoDto> procurar(@PathVariable Long id) {
 		return ResponseEntity.status(HttpStatus.OK).body(new EventoDto(eventoService.procurarPeloId(id)));
 	}
 
 	@PutMapping("/{id}")
-	@ApiOperation(value="Atualiza um evento através do seu Id")
+	@ApiOperation(value = "Atualiza um evento através do seu Id")
 	public ResponseEntity<EventoDto> atualizar(@PathVariable Long id, @RequestBody @Valid EventoForm form) {
 		return ResponseEntity.status(HttpStatus.OK).body(new EventoDto(eventoService.atualizarCadastro(id, form)));
 	}
 
 	@DeleteMapping("/{id}")
-	@ApiOperation(value="Deleta um evento através do seu Id")
+	@ApiOperation(value = "Deleta um evento através do seu Id")
 	public ResponseEntity<Object> deletar(@PathVariable Long id) {
 		eventoService.deletarPeloId(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
 	@PutMapping("/{id}/imagemEvento")
-	@ApiOperation(value="Atualiza a imagem de um evento através do seu Id")
+	@ApiOperation(value = "Atualiza a imagem de um evento através do seu Id")
 	public ResponseEntity<String> atualizarImagemDoEvento(@PathVariable Long id,
 			@RequestParam("imagemEvento") MultipartFile imagemEvento) throws Exception {
 		return ResponseEntity.status(HttpStatus.OK)

@@ -1,9 +1,6 @@
 package br.com.IngressoFacilAPI.entities.carrinho.dto;
 
-import java.util.List;
 import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
-import br.com.IngressoFacilAPI.entities.cliente.Cliente;
-import br.com.IngressoFacilAPI.entities.cliente.Ingresso;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,12 +10,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CarrinhoDto {
 	private Long id;
-	private Cliente cliente;
-	private List<Ingresso> ingressos;
+	private Long clienteId;
+	private Long eventoId;
+	private Integer quantidadeIngressos;
 	
 	public CarrinhoDto(Carrinho carrinho) {
 		this.id = carrinho.getId();
-		this.cliente = carrinho.getCliente();
-		this.ingressos = carrinho.getIngressos();
+		this.clienteId = carrinho.getClienteId();
+		this.eventoId = carrinho.getEventoId();
+		this.quantidadeIngressos = carrinho.getQuantidadeIngressos();
 	}
 }

@@ -47,8 +47,16 @@ public class SwaggerConfig {
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("Ingresso Fácil REST API")
-				.description("Aplicação criada com Spring Boot, ~~DESCREVER o README aqui~~").version("1.0.0").build();
+		return new ApiInfoBuilder().title("Ingresso Fácil REST API").description(
+				"Esta aplicação utiliza token JWT para segurança, autentique-se no Autenticação controller antes de testá-la.\n Clique no botão com cadeado <b>'Authorize'</b>. "
+						+ "Você deve escrever a palavra 'Bearer ' (sem as aspas e com um espaço) e copiar o token que receber na autenticacao e depois clicar em 'Authorize' novamente. "
+						+ "\n Exemplo: <b>Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJJbmdyZXNzbyB </b>"
+						+ "\n Aplicação utiliza <b>Banco de dados relacional MySQL</b> e <b>FlyWay</b> para o versionamento do banco."
+						+ " Foi criada com <b>Spring Boot</b> e usei o <b>Lombok</b>. "
+						+ "\n Os exemplos de JSON que estão na documentação já estão prontos para teste. "
+						+ "\n Todos atributos descritos no JSON fornecido são obrigatórios. "
+						+ "\n Todos códigos Http retornados tem descrição do que significam quando retornados nesta API.")
+				.version("1.0.0").build();
 	}
 
 }

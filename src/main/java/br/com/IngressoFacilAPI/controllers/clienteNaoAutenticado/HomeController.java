@@ -13,6 +13,7 @@ import br.com.IngressoFacilAPI.entities.evento.dto.EventoHomeDto;
 import br.com.IngressoFacilAPI.services.EventoService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping("/v1/home")
@@ -23,7 +24,7 @@ public class HomeController {
 	
 	@GetMapping
 	@ApiOperation(value="Retorna uma página com os eventos disponíveis para clientes não autenticados")
-	public ResponseEntity<Page<EventoHomeDto>> listar(@PageableDefault() Pageable paginacao) {
+	public ResponseEntity<Page<EventoHomeDto>> listar(@ApiIgnore() @PageableDefault() Pageable paginacao) {
 		return ResponseEntity.status(HttpStatus.OK).body(eventoService.listar(paginacao).map(EventoHomeDto::new));
 	}
 }
