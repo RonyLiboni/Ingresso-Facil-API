@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.tomcat.util.http.fileupload.FileUploadException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,17 +20,19 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.IdNotFoundException;
+import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.SemEstoqueException;
 import br.com.IngressoFacilAPI.entities.erroValidacao.dto.ErroDeFormularioDto;
+import br.com.IngressoFacilAPI.entities.semEstoque.dto.SemEstoqueDto;
+import lombok.RequiredArgsConstructor;
 
 @RestControllerAdvice
+@RequiredArgsConstructor
 public class RestExceptionHandler {
 
-	@Autowired
-	private MessageSource messageSource;
+	private final MessageSource messageSource;
 
-	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public List<ErroDeFormularioDto> erroDePreenchimentoDeFormulario(MethodArgumentNotValidException exception) {
+	public ResponseEntity<List<ErroDeFormularioDto>> erroDePreenchimentoDeFormulario(MethodArgumentNotValidException exception) {
 		List<ErroDeFormularioDto> dto = new ArrayList<>();
 
 		List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
@@ -39,55 +41,54 @@ public class RestExceptionHandler {
 			ErroDeFormularioDto erro = new ErroDeFormularioDto(e.getField(), mensagem);
 			dto.add(erro);
 		});
-		return dto;
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(dto);
 	}
 
-	@ResponseStatus(code = HttpStatus.NOT_FOUND)
 	@ExceptionHandler(IdNotFoundException.class)
-	public String idNaoExiste(IdNotFoundException exception) {
-		return exception.getMessage();
+	public ResponseEntity<String> idNaoExiste(IdNotFoundException exception) {
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
 	}
 
-	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(HttpMessageNotReadableException.class)
-	public String jsonComSintaxeErrada(HttpMessageNotReadableException exception) {
-		return exception.getMessage();
+	public ResponseEntity<String> jsonComSintaxeErrada(HttpMessageNotReadableException exception) {
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
 	}
 	
-	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(IllegalArgumentException.class)
-	public String idIncorretoNaCriacaoOuAtualizacaoDeEvento(IllegalArgumentException exception) {
-		return exception.getMessage();
+	public ResponseEntity<String> idIncorretoNaCriacaoOuAtualizacaoDeEvento(IllegalArgumentException exception) {
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
 	}
 	
-	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+
 	@ExceptionHandler(FileNotFoundException.class)
-	public String naoEnviouImagemNaTentativaDeUpload(FileNotFoundException exception) {
-		return exception.getMessage();
+	public ResponseEntity<String> naoEnviouImagemNaTentativaDeUpload(FileNotFoundException exception) {
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
 	}
 	
-	@ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
 	@ExceptionHandler(FileUploadException.class)
-	public String imagemNaoFoiSalvaPorErroNoServidor(FileUploadException exception) {
-		return exception.getMessage();
+	public ResponseEntity<String> imagemNaoFoiSalvaPorErroNoServidor(FileUploadException exception) {
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exception.getMessage());
 	}
 	
-	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(UsernameNotFoundException.class)
-	public String dadosDeUsernameInvalidos(UsernameNotFoundException exception) {
-		return exception.getMessage();
+	public ResponseEntity<String> dadosDeUsernameInvalidos(UsernameNotFoundException exception) {
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
 	}
-	
-	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+
 	@ExceptionHandler(AuthenticationException.class)
-	public String dadosDeLoginInvalidos(AuthenticationException exception) {
-		return exception.getMessage();
+	public ResponseEntity<String> dadosDeLoginInvalidos(AuthenticationException exception) {
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
 	}
 	
 	@ResponseStatus(code = HttpStatus.CONFLICT)
 	@ExceptionHandler(SQLIntegrityConstraintViolationException.class)
-	public String naoPodeDeletarEntidadesQueTemDependenciaComOutras(SQLIntegrityConstraintViolationException exception) {
-		return exception.getMessage();
+	public ResponseEntity<String> naoPodeDeletarEntidadesQueTemDependenciaComOutras(SQLIntegrityConstraintViolationException exception) {
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
+	}
+	
+	@ExceptionHandler(SemEstoqueException.class)
+	public ResponseEntity<List<SemEstoqueDto>> semEstoqueSuficienteParaCompra(SemEstoqueException exception) {
+		return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getEstoque());
 	}
 	
 	

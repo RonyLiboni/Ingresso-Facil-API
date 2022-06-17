@@ -2,6 +2,8 @@ package br.com.IngressoFacilAPI.services;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
@@ -24,10 +26,27 @@ public class CarrinhoService {
 		verificaSeClienteExiste(idDoCliente);
 		return carrinhoRepository.findByClienteId(idDoCliente);
 	}
+	@Transactional
+	public void apagarCarrinhoInteiro(Long idCliente) {
+		retornaEventosDoCarrinho(idCliente).forEach(eventoDoCarrinho -> {
+			carrinhoRepository.delete(eventoDoCarrinho);
+		});
+		
+	}
 	
+/**
+ * Primeiro analisa se o item ja existe no carrinho e se os Ids sao válidos.
+ * Se a quantidade de ingressos foi alterada para zero, o evento deve ser apagado do carrinho.
+ * Se a quantidade for maior que zero e o item existe no carrinho do cliente, entao deve atualizar a quantidade do item e salvar no banco.
+ * Se nenhuma das duas opções acima foram satisfeitas, entao é criado um novo carrinho e adicionado ao banco de dados.
+ * 
+ * @param form
+ * @return Item atualizado no carrinho
+ */
+	@Transactional
 	public Carrinho atualizarCarrinho(CarrinhoForm form) {
 		Carrinho carrinho = verificaSeExisteEventoNoCarrinho(form);
-		// Cliente zerou a quantidade porque não quer mais o ingresso, entao apagar evento do banco de dados OU não salvar(caso nao esteja no banco de dados) 
+		
 		if (form.getQuantidadeIngressos() <= 0) {
 			carrinhoRepository.delete(carrinho);
 			return Carrinho.builder()
@@ -37,13 +56,11 @@ public class CarrinhoService {
 					.build();
 		}
 
-		//Existe esse Evento no carrinho do cliente, entao atualizar no banco de dados
 		if (carrinhoExisteEQuantidadeDeIngressosEhMaiorQueZero(form, carrinho)) {		
 			carrinho.setQuantidadeIngressos(form.getQuantidadeIngressos());
 			return salvar(carrinho);
 		}
-		
-		//Não existe esse Evento no carrinho do cliente, entao adicionar ao banco de dados
+	
 		return salvar(Carrinho.builder()
 				.clienteId(form.getClienteId())
 				.eventoId(form.getEventoId())

@@ -10,7 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import br.com.IngressoFacilAPI.entities.ingresso.Ingresso;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,6 +20,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cliente{
@@ -28,5 +31,6 @@ public class Cliente{
 	private String email;
 	@ElementCollection
 	@Embedded
+	@Builder.Default
 	private List<Ingresso> ingressos = new ArrayList<>();
 }

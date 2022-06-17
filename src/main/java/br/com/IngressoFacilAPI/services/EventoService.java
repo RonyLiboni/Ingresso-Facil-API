@@ -3,6 +3,7 @@ package br.com.IngressoFacilAPI.services;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.IdNotFoundException;
+import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
 import br.com.IngressoFacilAPI.entities.evento.Evento;
 import br.com.IngressoFacilAPI.entities.evento.dto.EventoDto;
 import br.com.IngressoFacilAPI.entities.evento.form.EventoForm;
@@ -122,5 +124,16 @@ public class EventoService {
 	public String toString() {
 		return "evento";
 	}
+
+	public void atualizarQuantidadeDeIngressosDisponiveisNosEventos(List<Carrinho> eventosDoCarrinho) {
+		eventosDoCarrinho.forEach(eventoDoCarrinho -> {
+			Evento evento = procurarPeloId(eventoDoCarrinho.getEventoId());
+			evento.setQuantidadeIngressosDisponiveis(evento.getQuantidadeIngressosDisponiveis() - eventoDoCarrinho.getQuantidadeIngressos());
+			evento.setQuantidadeIngressosVendidos(evento.getQuantidadeIngressos() - evento.getQuantidadeIngressosDisponiveis());
+			salvar(evento);
+		});
+		
+	}
+
 
 }
