@@ -62,22 +62,37 @@ public class EventoService {
 		return salvar(evento);
 	}
 
+	public void atualizarQuantidadeDeIngressosDisponiveisNosEventos(List<Carrinho> eventosDoCarrinho) {
+		eventosDoCarrinho.forEach(eventoDoCarrinho -> {
+			Evento evento = procurarPeloId(eventoDoCarrinho.getEventoId());
+			evento.setQuantidadeIngressosDisponiveis(evento.getQuantidadeIngressosDisponiveis() - eventoDoCarrinho.getQuantidadeIngressos());
+			evento.setQuantidadeIngressosVendidos(evento.getQuantidadeIngressos() - evento.getQuantidadeIngressosDisponiveis());
+			salvar(evento);
+		});
+		
+	}
+
 	private Integer atualizaQuantidadeIngressosVendidos(Long id) {
-		return clienteRepository.quantidadeDeIngressosVendidosPorEvento(id);
+		Integer quantidadeDeIngressosVendidosPorEvento = clienteRepository.quantidadeDeIngressosVendidosPorEvento(id);
+		if(quantidadeDeIngressosVendidosPorEvento == null) {
+			return 0;
+		}
+		return quantidadeDeIngressosVendidosPorEvento;
 	}
 
 	@Transactional
 	public void deletarPeloId(Long id) {
-		idNaoExistenteJogaException(id);
-		eventoRepository.deleteById(id);
+		eventoRepository.delete(procurarPeloId(id));
 	}
 
 	public String atualizarImagemDoEvento(Long id, MultipartFile imagemEvento) throws Exception {
 		if (imagemEvento.isEmpty())
 			throw new FileNotFoundException("É obrigatório fazer o upload de uma imagem!");
 
-		String caminhoImagem = criarCaminhoDaImagem(id, imagemEvento.getContentType());
+//		String caminhoImagem = criarCaminhoDaImagem(id, imagemEvento.getContentType());
+		
 		Evento evento = procurarPeloId(id);
+		String caminhoImagem = criarCaminhoDaImagem(evento.getNome(),id, imagemEvento.getContentType());
 		try {
 			imagemEvento.transferTo(new File(caminhoImagem));
 			evento.setCaminhoImagemDoEvento(caminhoImagem);
@@ -102,21 +117,14 @@ public class EventoService {
 		return evento;
 	}
 
-
 	public Page<EventoDto> converterParaDto(Page<Evento> eventos) {
 		return eventos.map(EventoDto::new);
 	}
 
-	private void idNaoExistenteJogaException(Long id) {
-		if (eventoRepository.existsById(id))
-			return;
-		throw new IdNotFoundException("O Id do " + toString() + " informado não existe!");
-	}
-
-	private String criarCaminhoDaImagem(Long id, String tipoDeArquivo) throws IOException {
+	private String criarCaminhoDaImagem(String nomeEvento, Long id, String tipoDeArquivo) throws IOException {
 		return new File(".").getCanonicalPath() 
 				+ "/src/main/resources/static/ImagensDosEventos/" 
-				+ String.valueOf(id)
+				+ String.valueOf(id)+" - "+ nomeEvento 
 				+ "." + tipoDeArquivo.split("/")[1];
 	}
 
@@ -124,16 +132,5 @@ public class EventoService {
 	public String toString() {
 		return "evento";
 	}
-
-	public void atualizarQuantidadeDeIngressosDisponiveisNosEventos(List<Carrinho> eventosDoCarrinho) {
-		eventosDoCarrinho.forEach(eventoDoCarrinho -> {
-			Evento evento = procurarPeloId(eventoDoCarrinho.getEventoId());
-			evento.setQuantidadeIngressosDisponiveis(evento.getQuantidadeIngressosDisponiveis() - eventoDoCarrinho.getQuantidadeIngressos());
-			evento.setQuantidadeIngressosVendidos(evento.getQuantidadeIngressos() - evento.getQuantidadeIngressosDisponiveis());
-			salvar(evento);
-		});
-		
-	}
-
 
 }

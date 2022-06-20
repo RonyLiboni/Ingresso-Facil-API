@@ -10,6 +10,7 @@ import lombok.Setter;
 public class SemEstoqueDto {
 	private Long eventoId;
 	private Integer quantidadeDisponivel;
+	private Integer quantidadeSolicitada;
 	@Builder.Default
-	private String mensagemDeErro= "Não tem ingressos suficientes para concluir a compra solicitada!";
+	private String mensagem= "Não tem ingressos suficientes para concluir a compra solicitada!";
 }

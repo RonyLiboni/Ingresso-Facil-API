@@ -16,9 +16,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.CarrinhoVazioException;
 import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.IdNotFoundException;
 import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.SemEstoqueException;
 import br.com.IngressoFacilAPI.entities.erroValidacao.dto.ErroDeFormularioDto;
@@ -80,7 +80,6 @@ public class RestExceptionHandler {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
 	}
 	
-	@ResponseStatus(code = HttpStatus.CONFLICT)
 	@ExceptionHandler(SQLIntegrityConstraintViolationException.class)
 	public ResponseEntity<String> naoPodeDeletarEntidadesQueTemDependenciaComOutras(SQLIntegrityConstraintViolationException exception) {
 		return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
@@ -88,7 +87,12 @@ public class RestExceptionHandler {
 	
 	@ExceptionHandler(SemEstoqueException.class)
 	public ResponseEntity<List<SemEstoqueDto>> semEstoqueSuficienteParaCompra(SemEstoqueException exception) {
-		return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getEstoque());
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getEstoque());
+	}
+	
+	@ExceptionHandler(CarrinhoVazioException.class)
+	public ResponseEntity<String> carrinhoVazioJogaException(CarrinhoVazioException exception) {
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
 	}
 	
 	

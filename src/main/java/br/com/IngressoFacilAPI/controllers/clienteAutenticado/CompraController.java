@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,10 +21,10 @@ import lombok.RequiredArgsConstructor;
 public class CompraController {
 	private final CompraService compraService;
 	
-	@PostMapping
+	@PostMapping("/{clienteId}")
 	@ApiOperation(value="Faz o processo de compra para todos itens no carrinho")
-	public ResponseEntity<List<IngressoDto>> comprarIngressos(Long IdCliente) {
+	public ResponseEntity<List<IngressoDto>> comprarIngressos(@PathVariable Long clienteId) {
 		return ResponseEntity.status(HttpStatus.OK)
-				.body(compraService.processoDeCompraDeIngressos(IdCliente).stream().map(IngressoDto::new).collect(Collectors.toList()));
+				.body(compraService.processoDeCompraDeIngressos(clienteId).stream().map(IngressoDto::new).collect(Collectors.toList()));
 	}
 }

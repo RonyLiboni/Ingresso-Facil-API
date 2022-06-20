@@ -2,10 +2,13 @@ package br.com.IngressoFacilAPI.config.swagger;
 
 import java.util.Arrays;
 import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import br.com.IngressoFacilAPI.entities.usuario.Usuario;
 import io.swagger.models.auth.In;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -27,6 +30,7 @@ public class SwaggerConfig {
 		return new Docket(DocumentationType.SWAGGER_2).select()
 				.apis(RequestHandlerSelectors.basePackage("br.com.IngressoFacilAPI")).paths(PathSelectors.any()).build()
 				.useDefaultResponseMessages(false)
+				.ignoredParameterTypes(Usuario.class)
 				.globalResponseMessage(RequestMethod.GET, GlobalResponses.responseMessageForGET())
 				.globalResponseMessage(RequestMethod.DELETE, GlobalResponses.responseMessageForDELETE())
 				.globalResponseMessage(RequestMethod.POST, GlobalResponses.responseMessageForPOST())

@@ -43,8 +43,7 @@ public class LocalService {
 
 	@Transactional
 	public void deletarPeloId(Long id) {
-		idNaoExistenteJogaException(id);
-		localRepository.deleteById(id);
+		localRepository.delete(procurarPeloId(id));
 	}
 
 	private Local converterParaLocal(LocalForm form) {

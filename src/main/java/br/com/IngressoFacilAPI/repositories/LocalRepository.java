@@ -8,4 +8,6 @@ import br.com.IngressoFacilAPI.entities.Local.Local;
 @Repository
 public interface LocalRepository extends JpaRepository<Local, Long> {
 
+	boolean existsByNome(String nome);
+
 }

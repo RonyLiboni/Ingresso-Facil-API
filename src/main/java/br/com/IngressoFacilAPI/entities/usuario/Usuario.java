@@ -14,12 +14,18 @@ import javax.persistence.ManyToMany;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Usuario implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
@@ -30,6 +36,7 @@ public class Usuario implements UserDetails {
 	private String email;
 	private String senha;
 	@ManyToMany(fetch = FetchType.EAGER)
+	@Builder.Default
 	private List<Perfil> perfis = new ArrayList<>();
 
 	@Override

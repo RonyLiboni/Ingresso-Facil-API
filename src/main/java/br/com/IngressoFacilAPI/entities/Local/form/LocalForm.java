@@ -2,6 +2,7 @@ package br.com.IngressoFacilAPI.entities.Local.form;
 
 import javax.validation.constraints.NotBlank;
 
+import br.com.IngressoFacilAPI.validations.local.NomeDeLocalUnico;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import lombok.Setter;
 public class LocalForm {
 	
 	@NotBlank
+	@NomeDeLocalUnico
 	@ApiModelProperty(example = "Theatro Municipal de São Paulo", position = 0)
 	private String nome;
 	@NotBlank

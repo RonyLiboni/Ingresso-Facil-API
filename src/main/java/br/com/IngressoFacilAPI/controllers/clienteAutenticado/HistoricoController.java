@@ -3,6 +3,7 @@ package br.com.IngressoFacilAPI.controllers.clienteAutenticado;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,9 +18,9 @@ import lombok.RequiredArgsConstructor;
 public class HistoricoController {
 	private final ClienteService clienteService;
 	
-	@GetMapping
+	@GetMapping("/{clienteId}")
 	@ApiOperation(value="Retorna todos ingressos comprados através do Id do cliente")
-	public ResponseEntity<HistoricoDto> retornaHistoricoDeComprasDoCliente(Long clienteId){
+	public ResponseEntity<HistoricoDto> retornaHistoricoDeComprasDoCliente(@PathVariable Long clienteId){
 		return ResponseEntity.status(HttpStatus.OK).body(new HistoricoDto(clienteService.procurarPeloId(clienteId)));
 	}
 	
