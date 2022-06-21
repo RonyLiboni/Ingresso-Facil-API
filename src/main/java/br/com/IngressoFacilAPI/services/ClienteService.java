@@ -17,6 +17,7 @@ public class ClienteService {
 
 	private final ClienteRepository clienteRepository;
 	private final UsuarioService usuarioService;
+	private final EmailSenderService emailSenderService; 
 	
 	public Cliente salvar(Cliente cliente) {
 		return clienteRepository.save(cliente);
@@ -40,6 +41,7 @@ public class ClienteService {
 
 	public Cliente cadastrarCliente(ClienteCadastroForm form) {
 		usuarioService.criarUsuario(form);
+		emailSenderService.enviarEmail(form.getEmail(),"Cadastro no site da Ingresso Facil foi um sucesso!","Olá, email para sinalizar que sua conta foi criada com sucesso!\n https://github.com/RonyLiboni/Ingresso-Facil-API.git");
 		return salvar(Cliente.builder()
 				.email(form.getEmail())
 				.nome(form.getNome())
