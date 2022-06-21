@@ -13,6 +13,8 @@ http://localhost:8080/swagger-ui.html
 ## Tecnologias utilizadas
   - Java com Spring Boot
   - Spring Security com token JWT
+  - Spring Data JPA
+  - Spring Validation
   - Banco de dados MySQL
   - FlyWay para versionamento do banco de dados (cria e popula o banco de dados ao iniciar o sistema)
   - Documentação com SWAGGER

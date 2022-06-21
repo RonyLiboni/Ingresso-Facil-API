@@ -51,7 +51,7 @@ public class SwaggerConfig {
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("Ingresso Fácil REST API").description(
+		return new ApiInfoBuilder().title("Ingresso Fácil API").description(
 				"Esta aplicação utiliza token JWT para segurança.\n Clique no botão com cadeado <b>'Authorize'</b> quando for utilizar um endpoint que precisa de autenticação. "
 				+ "\n A autenticação pode ser feita no autenticacao-controller, nele você receberá um token. "
 						+ "Você deve escrever a palavra 'Bearer ' e copiar o token que recebeu. Cole tudo no campo 'value' e clique em 'Authorize'"
