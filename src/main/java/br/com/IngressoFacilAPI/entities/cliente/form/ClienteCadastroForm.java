@@ -16,11 +16,11 @@ public class ClienteCadastroForm{
 	private String nome;
 	@NotBlank
 	@EmailDeveSerUnico
-	@ApiModelProperty(example= "ronald.liboni@acad.pucrs.br", position = 1)
+	@ApiModelProperty(example= "ronaldliboni@gmail.com", position = 1)
 	private String email;
 	@NotBlank
 	@SenhaForte
-	@ApiModelProperty(example= "N4rut0@d4t3Ba1o", position = 2)
+	@ApiModelProperty(example= "N@ruto2022", position = 2)
 	private String senha;
 	
 	

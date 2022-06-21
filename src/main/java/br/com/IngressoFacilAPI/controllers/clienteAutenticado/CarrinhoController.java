@@ -2,7 +2,9 @@ package br.com.IngressoFacilAPI.controllers.clienteAutenticado;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import br.com.IngressoFacilAPI.entities.carrinho.dto.CarrinhoDto;
 import br.com.IngressoFacilAPI.entities.carrinho.form.CarrinhoForm;
 import br.com.IngressoFacilAPI.services.CarrinhoService;
@@ -36,6 +39,4 @@ public class CarrinhoController {
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(carrinhoService.retornaEventosDoCarrinho(idDoCliente).stream().map(CarrinhoDto::new).collect(Collectors.toList()));
 	}
-
-	
 }
