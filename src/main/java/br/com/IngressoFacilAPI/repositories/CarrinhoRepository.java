@@ -10,8 +10,7 @@ import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
 
 @Repository
 public interface CarrinhoRepository extends JpaRepository<Carrinho, Long> {
-	
-	List<Carrinho> findByClienteId(Long clienteId);
-	Optional<Carrinho> findByEventoIdAndClienteId(Long eventoId, Long clienteId);
+	Optional<Carrinho> findByEventoIdAndClienteEmail(Long eventoId, String emailCliente);
+	List<Carrinho> findByClienteEmail(String emailCliente);
 	
 }

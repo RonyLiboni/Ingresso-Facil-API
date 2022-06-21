@@ -20,14 +20,14 @@ public class CompraService {
 	private final EventoService eventoService;
 	private final IngressoService ingressoService;
 	
-	public List<Ingresso> processoDeCompraDeIngressos(Long idCliente) {
-		List<Carrinho> eventosDoCarrinho = carrinhoService.retornaEventosDoCarrinho(idCliente);
+	public List<Ingresso> processoDeCompraDeIngressos(String emailCliente) {
+		List<Carrinho> eventosDoCarrinho = carrinhoService.retornaEventosDoCarrinho(emailCliente);
 		if (eventosDoCarrinho.isEmpty())
 			throw new CarrinhoVazioException("Não é possivel fazer compra, pois não há itens em seu carrinho!");
 		verificaSeHaEstoqueSuficienteParaCompra(eventosDoCarrinho);
 		eventoService.atualizarQuantidadeDeIngressosDisponiveisNosEventos(eventosDoCarrinho);
-		carrinhoService.apagarCarrinhoInteiro(idCliente);
-		return ingressoService.transformarCarrinhoEmIngresso(eventosDoCarrinho);
+		carrinhoService.apagarCarrinhoInteiro(emailCliente);
+		return ingressoService.transformarCarrinhoEmIngresso(eventosDoCarrinho, emailCliente);
 	}
 
 	private void verificaSeHaEstoqueSuficienteParaCompra(List<Carrinho> carrinho) {

@@ -22,7 +22,7 @@ public class Carrinho {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Long clienteId;
+	private String clienteEmail;
 	private Long eventoId;
 	private Integer quantidadeIngressos;
 	 

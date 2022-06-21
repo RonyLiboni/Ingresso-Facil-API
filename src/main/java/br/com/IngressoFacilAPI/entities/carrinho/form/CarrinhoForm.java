@@ -14,9 +14,6 @@ public class CarrinhoForm {
 	
 	@NotNull
 	@ApiModelProperty(example= "1")
-	private Long clienteId;
-	@NotNull
-	@ApiModelProperty(example= "1")
 	private Long eventoId;
 	@NotNull
 	@ApiModelProperty(example= "2")

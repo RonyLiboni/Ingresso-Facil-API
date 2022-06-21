@@ -28,8 +28,8 @@ public class ClienteService {
 				.orElseThrow(() -> new IdNotFoundException("O Id do " + toString() + " informado não existe!"));
 	}
 	
-	public void adicionarIngresso(List<Ingresso> listaIngressos, Long clienteId) {
-		Cliente cliente = procurarPeloId(clienteId);
+	public void adicionarIngresso(List<Ingresso> listaIngressos, String emailCliente) {
+		Cliente cliente = procurarPeloEmail(emailCliente);
 		listaIngressos.forEach(ingresso -> cliente.getIngressos().add(ingresso));		
 		salvar(cliente);
 	}	
@@ -46,6 +46,10 @@ public class ClienteService {
 				.email(form.getEmail())
 				.nome(form.getNome())
 				.build());
+	}
+
+	public Cliente procurarPeloEmail(String email) {
+		return clienteRepository.findByEmail(email).get();
 	}
 
 }

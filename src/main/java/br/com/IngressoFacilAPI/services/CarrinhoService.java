@@ -15,44 +15,32 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CarrinhoService {
 	private final CarrinhoRepository carrinhoRepository;
-	private final ClienteService clienteService;
 	private final EventoService eventoService;
 
 	public Carrinho salvar(Carrinho carrinho) {
 		return carrinhoRepository.save(carrinho);
 	}
 	
-	public List<Carrinho> retornaEventosDoCarrinho(Long idDoCliente) {
-		verificaSeClienteExiste(idDoCliente);
-		return carrinhoRepository.findByClienteId(idDoCliente);
+	public List<Carrinho> retornaEventosDoCarrinho(String emailCliente) {
+		return carrinhoRepository.findByClienteEmail(emailCliente);
 	}
 	@Transactional
-	public void apagarCarrinhoInteiro(Long idCliente) {
-		retornaEventosDoCarrinho(idCliente).forEach(eventoDoCarrinho -> {
+	public void apagarCarrinhoInteiro(String emailCliente) {
+		retornaEventosDoCarrinho(emailCliente).forEach(eventoDoCarrinho -> {
 			carrinhoRepository.delete(eventoDoCarrinho);
 		});
-		
 	}
 	
-/**
- * Primeiro analisa se o item ja existe no carrinho e se os Ids sao válidos.
- * Se a quantidade de ingressos foi alterada para zero, o evento deve ser apagado do carrinho.
- * Se a quantidade for maior que zero e o item existe no carrinho do cliente, entao deve atualizar a quantidade do item e salvar no banco.
- * Se nenhuma das duas opções acima foram satisfeitas, entao é criado um novo carrinho e adicionado ao banco de dados.
- * 
- * @param form
- * @return Item atualizado no carrinho
- */
 	@Transactional
-	public Carrinho atualizarCarrinho(CarrinhoForm form) {
-		Carrinho carrinho = verificaSeExisteEventoNoCarrinho(form);
+	public Carrinho atualizarCarrinho(CarrinhoForm form, String emailCliente) {
+		Carrinho carrinho = verificaSeExisteEventoNoCarrinho(form, emailCliente);
 		
 		if (form.getQuantidadeIngressos() <= 0) {
 			carrinhoRepository.delete(carrinho);
 			return Carrinho.builder()
-					.clienteId(form.getClienteId())
 					.eventoId(form.getEventoId())
 					.quantidadeIngressos(form.getQuantidadeIngressos())
+					.clienteEmail(emailCliente)
 					.build();
 		}
 
@@ -62,16 +50,15 @@ public class CarrinhoService {
 		}
 	
 		return salvar(Carrinho.builder()
-				.clienteId(form.getClienteId())
 				.eventoId(form.getEventoId())
 				.quantidadeIngressos(form.getQuantidadeIngressos())
+				.clienteEmail(emailCliente)
 				.build());
 	}
 
-	private Carrinho verificaSeExisteEventoNoCarrinho(CarrinhoForm form) {
+	private Carrinho verificaSeExisteEventoNoCarrinho(CarrinhoForm form, String emailCliente) {
 		verificaSeEventoExiste(form.getEventoId());
-		verificaSeClienteExiste(form.getClienteId());
-		return carrinhoRepository.findByEventoIdAndClienteId(form.getEventoId(),form.getClienteId()).orElse(new Carrinho());
+		return carrinhoRepository.findByEventoIdAndClienteEmail(form.getEventoId(), emailCliente).orElse(new Carrinho());
 	}
 
 	private boolean carrinhoExisteEQuantidadeDeIngressosEhMaiorQueZero(CarrinhoForm form, Carrinho carrinho) {
@@ -82,9 +69,6 @@ public class CarrinhoService {
 		eventoService.procurarPeloId(eventoId);
 	}
 
-	private void verificaSeClienteExiste(Long clienteId) {
-		clienteService.procurarPeloId(clienteId);	
-	}
 
 	@Override
 	public String toString() {

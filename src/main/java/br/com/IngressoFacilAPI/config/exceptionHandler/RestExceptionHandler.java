@@ -82,7 +82,7 @@ public class RestExceptionHandler {
 	
 	@ExceptionHandler(SQLIntegrityConstraintViolationException.class)
 	public ResponseEntity<String> naoPodeDeletarEntidadesQueTemDependenciaComOutras(SQLIntegrityConstraintViolationException exception) {
-		return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
+		return ResponseEntity.status(HttpStatus.CONFLICT).body("Não é possivel deletar este recurso, pois outros dependem dele");
 	}
 	
 	@ExceptionHandler(SemEstoqueException.class)

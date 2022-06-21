@@ -14,7 +14,7 @@ public class LoginForm {
 	@ApiModelProperty(example = "Admin@gmail.com", position =0)
 	private String email;
 	@NotBlank
-	@ApiModelProperty(example = "123456", position =1)
+	@ApiModelProperty(example = "S@suke2022", position =1)
 	private String senha;
 
 }

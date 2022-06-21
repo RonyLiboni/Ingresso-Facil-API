@@ -5,8 +5,7 @@ CREATE TABLE `ingresso-facil-api`.usuario (
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO `INGRESSO-FACIL-API`.USUARIO(id, email, senha) VALUES(1, 'admin@gmail.com', '$2a$12$AY2ZJ3COjWbQxWsACpWUBOJFGNEW1OFAfPoupuMp1JDlVZPQBtwom');
-INSERT INTO `INGRESSO-FACIL-API`.USUARIO(id, email, senha) VALUES(2, 'cliente@gmail.com', '$2a$12$AY2ZJ3COjWbQxWsACpWUBOJFGNEW1OFAfPoupuMp1JDlVZPQBtwom');
+INSERT INTO `INGRESSO-FACIL-API`.USUARIO(id, email, senha) VALUES(1, 'admin@gmail.com', '$2a$12$KxRyI0kAAQKEgCC..yIc4eVv/AraR1l0osAr783z5WPpbT0pm5y1q');
 
 CREATE TABLE `ingresso-facil-api`.`perfil` (
   `nome` varchar(255) NOT NULL,
@@ -26,4 +25,4 @@ CREATE TABLE `INGRESSO-FACIL-API`.`usuario_perfis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO  `INGRESSO-FACIL-API`.USUARIO_PERFIS(usuario_id, perfis_nome) VALUES(1, 'ROLE_ADMIN');
-INSERT INTO  `INGRESSO-FACIL-API`.USUARIO_PERFIS(usuario_id, perfis_nome) VALUES(2, 'ROLE_CLIENTE');
+

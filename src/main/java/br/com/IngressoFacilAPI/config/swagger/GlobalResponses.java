@@ -77,7 +77,7 @@ public final class GlobalResponses {
 	private static ResponseMessage httpCode403_Forbidden() {
 		return new ResponseMessageBuilder()
 	            .code(403)
-	            .message("Você não tem permissão para utilizar este endpoint! (Autentique-se ou como cliente ou como admin)")
+	            .message("Você não tem permissão para utilizar este endpoint! Verifique na lista de funcionalidades para quem ela é permitida 'cliente' ou 'admin')")
 	            .build();
 	}
 	

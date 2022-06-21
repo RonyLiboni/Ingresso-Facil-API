@@ -15,11 +15,11 @@ public class IngressoDto {
 
 	private EventoIngressoDto evento;
 	private BigDecimal valorIngresso;
-	private Integer quantidadeIngressosComprados;
+	private Integer quantidadeIngressos;
 	
 	public IngressoDto(Ingresso ingresso) {
 		this.evento = new EventoIngressoDto(ingresso.getEvento());
 		this.valorIngresso = ingresso.getValorIngresso();
-		this.quantidadeIngressosComprados = ingresso.getQuantidadeIngressosComprados();
+		this.quantidadeIngressos = ingresso.getQuantidadeIngressos();
 	}
 }

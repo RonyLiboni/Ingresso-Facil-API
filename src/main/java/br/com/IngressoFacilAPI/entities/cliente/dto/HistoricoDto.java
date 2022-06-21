@@ -11,11 +11,9 @@ import lombok.Setter;
 @Setter
 public class HistoricoDto {
 	private List<IngressoDto> ingressos;
-	private Long clienteId;
 	
 	public HistoricoDto(Cliente cliente) {
 		this.ingressos = cliente.getIngressos().stream().map(IngressoDto::new).toList();
-		this.clienteId = cliente.getId();
 	}
 
 }

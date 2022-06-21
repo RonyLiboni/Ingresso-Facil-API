@@ -23,5 +23,5 @@ public class Ingresso {
 	@ManyToOne
 	private Evento evento;
 	private BigDecimal valorIngresso;
-	private Integer quantidadeIngressosComprados;
+	private Integer quantidadeIngressos;
 }

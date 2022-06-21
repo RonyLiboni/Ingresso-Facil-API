@@ -1,11 +1,13 @@
 package br.com.IngressoFacilAPI.services;
 
 import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+
 import br.com.IngressoFacilAPI.entities.login.form.LoginForm;
 import br.com.IngressoFacilAPI.entities.usuario.Usuario;
 import io.jsonwebtoken.Claims;
@@ -56,5 +58,4 @@ public class TokenService {
 				.signWith(SignatureAlgorithm.HS256, secret)
 				.compact();
 	}
-	
 }
