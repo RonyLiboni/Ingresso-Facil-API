@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.controllers.adminPlataforma;
+package br.com.IngressoFacilAPI.controllers.administracao_plataforma;
 
 import javax.validation.Valid;
 
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.IngressoFacilAPI.entities.Local.dto.LocalDto;
 import br.com.IngressoFacilAPI.entities.Local.form.LocalForm;
-import br.com.IngressoFacilAPI.services.LocalService;
+import br.com.IngressoFacilAPI.services.administracao_plataforma.LocalService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import springfox.documentation.annotations.ApiIgnore;

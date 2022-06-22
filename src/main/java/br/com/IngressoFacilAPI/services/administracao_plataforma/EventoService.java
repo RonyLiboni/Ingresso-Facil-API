@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.services;
+package br.com.IngressoFacilAPI.services.administracao_plataforma;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,8 +18,8 @@ import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
 import br.com.IngressoFacilAPI.entities.evento.Evento;
 import br.com.IngressoFacilAPI.entities.evento.dto.EventoDto;
 import br.com.IngressoFacilAPI.entities.evento.form.EventoForm;
-import br.com.IngressoFacilAPI.repositories.ClienteRepository;
-import br.com.IngressoFacilAPI.repositories.EventoRepository;
+import br.com.IngressoFacilAPI.repositories.administracao_plataforma.EventoRepository;
+import br.com.IngressoFacilAPI.repositories.cliente_autenticado.ClienteRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -88,8 +88,6 @@ public class EventoService {
 	public String atualizarImagemDoEvento(Long id, MultipartFile imagemEvento) throws Exception {
 		if (imagemEvento.isEmpty())
 			throw new FileNotFoundException("É obrigatório fazer o upload de uma imagem!");
-
-//		String caminhoImagem = criarCaminhoDaImagem(id, imagemEvento.getContentType());
 		
 		Evento evento = procurarPeloId(id);
 		String caminhoImagem = criarCaminhoDaImagem(evento.getNome(),id, imagemEvento.getContentType());

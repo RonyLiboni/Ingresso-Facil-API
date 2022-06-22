@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.services;
+package br.com.IngressoFacilAPI.services.administracao_plataforma;
 
 import javax.transaction.Transactional;
 import org.springframework.data.domain.Page;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.IdNotFoundException;
 import br.com.IngressoFacilAPI.entities.Local.Local;
 import br.com.IngressoFacilAPI.entities.Local.form.LocalForm;
-import br.com.IngressoFacilAPI.repositories.LocalRepository;
+import br.com.IngressoFacilAPI.repositories.administracao_plataforma.LocalRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service

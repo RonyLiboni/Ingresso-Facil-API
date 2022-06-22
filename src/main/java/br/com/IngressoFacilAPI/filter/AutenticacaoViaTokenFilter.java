@@ -12,8 +12,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import br.com.IngressoFacilAPI.entities.usuario.Usuario;
-import br.com.IngressoFacilAPI.repositories.UsuarioRepository;
-import br.com.IngressoFacilAPI.services.TokenService;
+import br.com.IngressoFacilAPI.repositories.autenticacao.UsuarioRepository;
+import br.com.IngressoFacilAPI.services.autenticacao.TokenService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

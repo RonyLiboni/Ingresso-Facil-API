@@ -19,29 +19,35 @@ import lombok.Setter;
 @Setter
 public class EventoForm {
 	
-	@NotBlank
+	@NotBlank (message = "{obrigatorio.nome}")
 	@ApiModelProperty(example = "Improvavel - Os Barbixas", position =0)
 	private String nome;
-	@NotNull
+	
+	@NotNull (message = "{obrigatorio.valor}")
 	@Digits(fraction = 2, integer = 10)
 	@ApiModelProperty(example = "120.00", position =1)
 	private BigDecimal valor;
-	@NotNull
+	
+	@NotNull (message = "{obrigatorio.tipo}")
 	@ApiModelProperty(example = "TEATRO", position =2)
 	private TipoDeEvento tipo;
-	@NotNull
+	
+	@NotNull (message = "{obrigatorio.id}")
 	@ApiModelProperty(example = "3", position =3)
 	private Long localId;
-	@NotNull
+	
+	@NotNull(message = "{obrigatorio.data}")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Future
 	@ApiModelProperty(example = "2022-12-12", position =4)
 	private LocalDate dataEvento;
-	@NotNull
+	
+	@NotNull(message = "{obrigatorio.hora}")
 	@JsonFormat(pattern = "HH:mm:ss", shape = Shape.STRING)
 	@ApiModelProperty(example = "20:00:00", position =5)
 	private LocalTime horaEvento;
-	@NotNull
+	
+	@NotNull(message = "{obrigatorio.quantidade.ingresso.disponivel}")
 	@Digits(fraction=0 ,integer =10)
 	@ApiModelProperty(example = "1000", position =6)
 	private Integer quantidadeIngressos;

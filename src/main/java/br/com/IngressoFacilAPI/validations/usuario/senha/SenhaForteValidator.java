@@ -22,6 +22,8 @@ public class SenhaForteValidator implements ConstraintValidator<SenhaForte, Stri
 
 	@Override
 	public boolean isValid(String senha, ConstraintValidatorContext context) {
+		if (senha==null)
+			return false;
 		PasswordValidator validator = new PasswordValidator(Arrays.asList(
                 new LengthRule(8, 30),
                 new UppercaseCharacterRule(1),

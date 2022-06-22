@@ -11,11 +11,11 @@ import lombok.Setter;
 @Setter
 public class LocalForm {
 	
-	@NotBlank
+	@NotBlank (message = "{obrigatorio.nome}")
 	@NomeDeLocalUnico
 	@ApiModelProperty(example = "Theatro Municipal de São Paulo", position = 0)
 	private String nome;
-	@NotBlank
+	@NotBlank (message = "{obrigatorio.endereco}")
 	@ApiModelProperty(example = "Praça Ramos de Azevedo, s/n - República, São Paulo - SP, 01037-010", position = 1)
 	private String endereco;
 	

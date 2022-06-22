@@ -11,14 +11,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ClienteCadastroForm{
-	@NotBlank
+	@NotBlank (message = "{obrigatorio.nome}")
 	@ApiModelProperty(example= "Ronald Liboni", position = 0)
 	private String nome;
-	@NotBlank
+	@NotBlank (message = "{obrigatorio.email}")
 	@EmailDeveSerUnico
 	@ApiModelProperty(example= "ronaldliboni@gmail.com", position = 1)
 	private String email;
-	@NotBlank
+	@NotBlank (message = "{obrigatorio.senha}")
 	@SenhaForte
 	@ApiModelProperty(example= "N@ruto2022", position = 2)
 	private String senha;

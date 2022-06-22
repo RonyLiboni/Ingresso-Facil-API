@@ -9,13 +9,13 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import br.com.IngressoFacilAPI.filter.AutenticacaoViaTokenFilter;
-import br.com.IngressoFacilAPI.repositories.UsuarioRepository;
-import br.com.IngressoFacilAPI.services.AutenticacaoService;
-import br.com.IngressoFacilAPI.services.TokenService;
+import br.com.IngressoFacilAPI.repositories.autenticacao.UsuarioRepository;
+import br.com.IngressoFacilAPI.services.autenticacao.AutenticacaoService;
+import br.com.IngressoFacilAPI.services.autenticacao.TokenService;
 import lombok.RequiredArgsConstructor;
 
 @EnableWebSecurity
@@ -26,6 +26,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	private final AutenticacaoService autenticacaoService;
 	private final TokenService tokenService;
 	private final UsuarioRepository usuarioRepository;
+	private final PasswordEncoder passwordEncoder;
 
 	@Override
 	@Bean
@@ -35,7 +36,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(autenticacaoService).passwordEncoder(new BCryptPasswordEncoder());	
+		auth.userDetailsService(autenticacaoService).passwordEncoder(passwordEncoder);	
 	}
 	
 	@Override

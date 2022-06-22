@@ -3,7 +3,7 @@ package br.com.IngressoFacilAPI.validations.usuario.email;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import br.com.IngressoFacilAPI.repositories.UsuarioRepository;
+import br.com.IngressoFacilAPI.repositories.autenticacao.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

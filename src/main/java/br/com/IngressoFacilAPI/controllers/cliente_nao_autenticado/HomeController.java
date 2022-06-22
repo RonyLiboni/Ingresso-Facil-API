@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.controllers.clienteNaoAutenticado;
+package br.com.IngressoFacilAPI.controllers.cliente_nao_autenticado;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.IngressoFacilAPI.entities.evento.dto.EventoHomeDto;
-import br.com.IngressoFacilAPI.services.EventoService;
+import br.com.IngressoFacilAPI.services.administracao_plataforma.EventoService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import springfox.documentation.annotations.ApiIgnore;

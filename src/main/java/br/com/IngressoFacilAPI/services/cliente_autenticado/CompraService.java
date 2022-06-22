@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.services;
+package br.com.IngressoFacilAPI.services.cliente_autenticado;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,7 @@ import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.SemEstoqueExce
 import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
 import br.com.IngressoFacilAPI.entities.ingresso.Ingresso;
 import br.com.IngressoFacilAPI.entities.semEstoque.dto.SemEstoqueDto;
+import br.com.IngressoFacilAPI.services.administracao_plataforma.EventoService;
 import lombok.RequiredArgsConstructor;
 
 @Service

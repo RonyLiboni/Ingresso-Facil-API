@@ -2,7 +2,8 @@ package br.com.IngressoFacilAPI.validations.local;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import br.com.IngressoFacilAPI.repositories.LocalRepository;
+
+import br.com.IngressoFacilAPI.repositories.administracao_plataforma.LocalRepository;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

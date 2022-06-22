@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.services;
+package br.com.IngressoFacilAPI.services.envio_de_emails;
 
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -14,12 +14,12 @@ public class EmailSenderService {
 	private final JavaMailSender enviaEmail;
 	
 	@Async
-	public void enviarEmail(String destinatario, String corpo, String assunto) {
+	public void enviarEmail(String destinatario, EmailsTemplates emailTemplate) {
 		SimpleMailMessage mensagem= new SimpleMailMessage();
 		mensagem.setFrom("ronaldliboni@gmail.com");
 		mensagem.setTo(destinatario);
-		mensagem.setText(assunto);
-		mensagem.setSubject(corpo);
+		mensagem.setText(emailTemplate.getText());
+		mensagem.setSubject(emailTemplate.getSubject());
 		
 		enviaEmail.send(mensagem);
 	}

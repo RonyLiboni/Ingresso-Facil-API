@@ -12,10 +12,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CarrinhoForm {
 	
-	@NotNull
+	@NotNull(message = "{obrigatorio.id}")
 	@ApiModelProperty(example= "1")
 	private Long eventoId;
-	@NotNull
+	@NotNull(message = "{obrigatorio.quantidade.ingressos}")
 	@ApiModelProperty(example= "2")
 	private Integer quantidadeIngressos;
 }

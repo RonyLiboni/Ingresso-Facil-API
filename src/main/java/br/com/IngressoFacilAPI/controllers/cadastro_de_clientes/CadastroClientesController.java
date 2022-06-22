@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.controllers.cadastroDeClientes;
+package br.com.IngressoFacilAPI.controllers.cadastro_de_clientes;
 
 import javax.validation.Valid;
 
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.IngressoFacilAPI.entities.cliente.dto.ClienteDto;
 import br.com.IngressoFacilAPI.entities.cliente.form.ClienteCadastroForm;
-import br.com.IngressoFacilAPI.services.ClienteService;
+import br.com.IngressoFacilAPI.services.cadastro_clientes.ClienteService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 

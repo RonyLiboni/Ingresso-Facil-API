@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.controllers.clienteAutenticado;
+package br.com.IngressoFacilAPI.controllers.cliente_autenticado;
 
 import java.security.Principal;
 
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.IngressoFacilAPI.entities.cliente.dto.HistoricoDto;
-import br.com.IngressoFacilAPI.services.ClienteService;
+import br.com.IngressoFacilAPI.services.cadastro_clientes.ClienteService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import springfox.documentation.annotations.ApiIgnore;

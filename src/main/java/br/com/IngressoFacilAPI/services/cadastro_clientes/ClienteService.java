@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.services;
+package br.com.IngressoFacilAPI.services.cadastro_clientes;
 
 import java.util.List;
 
@@ -8,7 +8,9 @@ import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.IdNotFoundExce
 import br.com.IngressoFacilAPI.entities.cliente.Cliente;
 import br.com.IngressoFacilAPI.entities.cliente.form.ClienteCadastroForm;
 import br.com.IngressoFacilAPI.entities.ingresso.Ingresso;
-import br.com.IngressoFacilAPI.repositories.ClienteRepository;
+import br.com.IngressoFacilAPI.repositories.cliente_autenticado.ClienteRepository;
+import br.com.IngressoFacilAPI.services.envio_de_emails.EmailSenderService;
+import br.com.IngressoFacilAPI.services.envio_de_emails.EmailsTemplates;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -34,14 +36,9 @@ public class ClienteService {
 		salvar(cliente);
 	}	
 	
-	@Override
-	public String toString() {
-		return "cliente";
-	}
-
 	public Cliente cadastrarCliente(ClienteCadastroForm form) {
 		usuarioService.criarUsuario(form);
-		emailSenderService.enviarEmail(form.getEmail(),"Cadastro no site da Ingresso Facil foi um sucesso!","Olá, email para sinalizar que sua conta foi criada com sucesso!\n https://github.com/RonyLiboni/Ingresso-Facil-API.git");
+		emailSenderService.enviarEmail(form.getEmail(),EmailsTemplates.CONTA_CRIADA_COM_SUCESSO);
 		return salvar(Cliente.builder()
 				.email(form.getEmail())
 				.nome(form.getNome())
@@ -50,6 +47,11 @@ public class ClienteService {
 
 	public Cliente procurarPeloEmail(String email) {
 		return clienteRepository.findByEmail(email).get();
+	}
+	
+	@Override
+	public String toString() {
+		return "cliente";
 	}
 
 }

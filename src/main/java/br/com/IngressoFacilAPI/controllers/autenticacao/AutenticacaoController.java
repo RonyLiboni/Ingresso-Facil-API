@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.IngressoFacilAPI.entities.login.form.LoginForm;
 import br.com.IngressoFacilAPI.entities.token.dto.TokenDto;
-import br.com.IngressoFacilAPI.services.TokenService;
+import br.com.IngressoFacilAPI.services.autenticacao.TokenService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 

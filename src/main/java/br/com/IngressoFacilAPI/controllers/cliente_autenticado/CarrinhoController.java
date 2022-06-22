@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.controllers.clienteAutenticado;
+package br.com.IngressoFacilAPI.controllers.cliente_autenticado;
 
 import java.security.Principal;
 import java.util.List;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.IngressoFacilAPI.entities.carrinho.dto.CarrinhoDto;
 import br.com.IngressoFacilAPI.entities.carrinho.form.CarrinhoForm;
-import br.com.IngressoFacilAPI.services.CarrinhoService;
+import br.com.IngressoFacilAPI.services.cliente_autenticado.CarrinhoService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import springfox.documentation.annotations.ApiIgnore;

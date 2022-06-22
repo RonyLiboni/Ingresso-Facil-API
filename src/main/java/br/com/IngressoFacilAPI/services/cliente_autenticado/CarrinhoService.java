@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.services;
+package br.com.IngressoFacilAPI.services.cliente_autenticado;
 
 import java.util.List;
 
@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service;
 
 import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
 import br.com.IngressoFacilAPI.entities.carrinho.form.CarrinhoForm;
-import br.com.IngressoFacilAPI.repositories.CarrinhoRepository;
+import br.com.IngressoFacilAPI.repositories.cliente_autenticado.CarrinhoRepository;
+import br.com.IngressoFacilAPI.services.administracao_plataforma.EventoService;
 import lombok.RequiredArgsConstructor;
 
 @Service

@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.repositories;
+package br.com.IngressoFacilAPI.repositories.administracao_plataforma;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.repositories;
+package br.com.IngressoFacilAPI.repositories.autenticacao;
 
 import java.util.Optional;
 

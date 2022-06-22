@@ -10,10 +10,10 @@ import lombok.Setter;
 @Setter
 public class LoginForm {
 	
-	@NotBlank
+	@NotBlank (message = "{obrigatorio.email}")
 	@ApiModelProperty(example = "Admin@gmail.com", position =0)
 	private String email;
-	@NotBlank
+	@NotBlank (message = "{obrigatorio.senha}")
 	@ApiModelProperty(example = "S@suke2022", position =1)
 	private String senha;
 
