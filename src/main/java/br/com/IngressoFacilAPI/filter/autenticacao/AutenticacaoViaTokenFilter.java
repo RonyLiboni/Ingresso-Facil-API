@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.filter;
+package br.com.IngressoFacilAPI.filter.autenticacao;
 
 import java.io.IOException;
 

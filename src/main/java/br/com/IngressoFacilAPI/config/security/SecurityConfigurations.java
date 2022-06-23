@@ -12,7 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import br.com.IngressoFacilAPI.filter.AutenticacaoViaTokenFilter;
+import br.com.IngressoFacilAPI.filter.autenticacao.AutenticacaoViaTokenFilter;
 import br.com.IngressoFacilAPI.repositories.autenticacao.UsuarioRepository;
 import br.com.IngressoFacilAPI.services.autenticacao.AutenticacaoService;
 import br.com.IngressoFacilAPI.services.autenticacao.TokenService;
