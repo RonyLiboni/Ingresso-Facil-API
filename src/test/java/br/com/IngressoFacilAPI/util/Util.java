@@ -14,6 +14,7 @@ import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
 import br.com.IngressoFacilAPI.entities.cliente.Cliente;
 import br.com.IngressoFacilAPI.entities.evento.Evento;
 import br.com.IngressoFacilAPI.entities.evento.TipoDeEvento;
+import br.com.IngressoFacilAPI.entities.ingresso.Ingresso;
 import br.com.IngressoFacilAPI.entities.usuario.Usuario;
 
 public class Util {
@@ -73,6 +74,12 @@ public class Util {
 		form.setEndereco("TESTE");
 		form.setNome("TESTE");
 		return form;
+	}
+
+	public static Ingresso criarIngresso() {
+		return Ingresso.builder()
+				.evento(Util.criarEvento())
+				.build();
 	}
 
 	

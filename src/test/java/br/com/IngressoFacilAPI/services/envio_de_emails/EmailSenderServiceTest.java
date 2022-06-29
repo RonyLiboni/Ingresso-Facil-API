@@ -11,7 +11,7 @@ import org.mockito.Mock;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
-import br.com.IngressoFacilAPI.services.administracao_plataforma.ServiceTestConfig;
+import br.com.IngressoFacilAPI.services.ServiceTestConfig;
 
 class EmailSenderServiceTest extends ServiceTestConfig{
 

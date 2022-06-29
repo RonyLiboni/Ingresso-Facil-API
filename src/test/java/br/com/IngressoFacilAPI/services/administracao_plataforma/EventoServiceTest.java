@@ -19,6 +19,7 @@ import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.IdNotFoundExce
 import br.com.IngressoFacilAPI.entities.evento.Evento;
 import br.com.IngressoFacilAPI.repositories.administracao_plataforma.EventoRepository;
 import br.com.IngressoFacilAPI.repositories.cliente_autenticado.ClienteRepository;
+import br.com.IngressoFacilAPI.services.ServiceTestConfig;
 import br.com.IngressoFacilAPI.util.Util;
 
 class EventoServiceTest extends ServiceTestConfig{
