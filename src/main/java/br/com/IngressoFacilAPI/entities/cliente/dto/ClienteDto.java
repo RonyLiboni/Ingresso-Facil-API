@@ -1,12 +1,10 @@
 package br.com.IngressoFacilAPI.entities.cliente.dto;
 
 import br.com.IngressoFacilAPI.entities.cliente.Cliente;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class ClienteDto{
 	private Long id;

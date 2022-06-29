@@ -1,12 +1,10 @@
 package br.com.IngressoFacilAPI.entities.Local.dto;
 
 import br.com.IngressoFacilAPI.entities.Local.Local;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class LocalDto {
 	

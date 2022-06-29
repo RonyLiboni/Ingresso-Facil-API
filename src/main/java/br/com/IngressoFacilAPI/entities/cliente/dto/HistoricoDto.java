@@ -4,11 +4,9 @@ import java.util.List;
 
 import br.com.IngressoFacilAPI.entities.cliente.Cliente;
 import br.com.IngressoFacilAPI.entities.ingresso.dto.IngressoDto;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class HistoricoDto {
 	private List<IngressoDto> ingressos;
 	

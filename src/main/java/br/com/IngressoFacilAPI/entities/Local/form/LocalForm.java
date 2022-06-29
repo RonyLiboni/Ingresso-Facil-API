@@ -5,11 +5,9 @@ import javax.validation.constraints.NotBlank;
 import br.com.IngressoFacilAPI.entities.Local.Local;
 import br.com.IngressoFacilAPI.validations.local.NomeDeLocalUnico;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class LocalForm {
 	
 	@NotBlank (message = "{obrigatorio.nome}")

@@ -8,16 +8,14 @@ import javax.persistence.ManyToOne;
 import br.com.IngressoFacilAPI.entities.evento.Evento;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Embeddable
-@Getter
-@Setter
+@Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Ingresso {
 	
 	@ManyToOne

@@ -4,12 +4,10 @@ import java.math.BigDecimal;
 
 import br.com.IngressoFacilAPI.entities.evento.dto.EventoIngressoDto;
 import br.com.IngressoFacilAPI.entities.ingresso.Ingresso;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class IngressoDto {
 

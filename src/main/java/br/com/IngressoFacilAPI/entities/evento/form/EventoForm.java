@@ -3,20 +3,22 @@ package br.com.IngressoFacilAPI.entities.evento.form;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+
 import br.com.IngressoFacilAPI.entities.evento.TipoDeEvento;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class EventoForm {
 	
 	@NotBlank (message = "{obrigatorio.nome}")

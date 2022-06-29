@@ -13,16 +13,14 @@ import javax.persistence.Id;
 import br.com.IngressoFacilAPI.entities.ingresso.Ingresso;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
+@Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Cliente{
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -12,11 +12,12 @@ import lombok.RequiredArgsConstructor;
 public class EmailSenderService {
 	
 	private final JavaMailSender enviaEmail;
+	private final String remetente="testesdeapp.naoresponda@gmail.com";
 	
 	@Async
 	public void enviarEmail(String destinatario, EmailsTemplates emailTemplate) {
 		SimpleMailMessage mensagem= new SimpleMailMessage();
-		mensagem.setFrom("ronaldliboni@gmail.com");
+		mensagem.setFrom(remetente);
 		mensagem.setTo(destinatario);
 		mensagem.setText(emailTemplate.getText());
 		mensagem.setSubject(emailTemplate.getSubject());

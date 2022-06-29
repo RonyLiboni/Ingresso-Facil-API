@@ -3,11 +3,9 @@ package br.com.IngressoFacilAPI.entities.login.form;
 import javax.validation.constraints.NotBlank;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class LoginForm {
 	
 	@NotBlank (message = "{obrigatorio.email}")

@@ -5,11 +5,13 @@ import javax.validation.constraints.NotBlank;
 import br.com.IngressoFacilAPI.validations.usuario.email.EmailDeveSerUnico;
 import br.com.IngressoFacilAPI.validations.usuario.senha.SenhaForte;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ClienteCadastroForm{
 	@NotBlank (message = "{obrigatorio.nome}")
 	@ApiModelProperty(example= "Ronald Liboni", position = 0)

@@ -13,10 +13,8 @@ import br.com.IngressoFacilAPI.entities.usuario.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
 public class TokenService {
 
 	@Value("${ingressofacilapi.jwt.expiration}")
