@@ -4,15 +4,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
-
 import javax.transaction.Transactional;
-
 import org.apache.tomcat.util.http.fileupload.FileUploadException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.IdNotFoundException;
 import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
 import br.com.IngressoFacilAPI.entities.evento.Evento;
@@ -102,17 +99,18 @@ public class EventoService {
 	}
 
 	private Evento converterParaEvento(EventoForm form) {
-		Evento evento = new Evento();
-		evento.setNome(form.getNome());
-		evento.setValor(form.getValor());
-		evento.setTipo(form.getTipo());
-		evento.setLocal(localService.procurarPeloId(form.getLocalId()));
-		evento.setDataEvento(form.getDataEvento());
-		evento.setHoraEvento(form.getHoraEvento());
-		evento.setQuantidadeIngressos(form.getQuantidadeIngressos());
-		evento.setQuantidadeIngressosDisponiveis(form.getQuantidadeIngressos());
-		evento.setCaminhoImagemDoEvento("/imagensDosEventos/imagemPadrao.jpg");
-		return evento;
+		return Evento.builder()
+				.nome(form.getNome())
+				.valor(form.getValor())
+				.tipo(form.getTipo())
+				.local(localService.procurarPeloId(form.getLocalId()))
+				.dataEvento(form.getDataEvento())
+				.horaEvento(form.getHoraEvento())
+				.quantidadeIngressos(form.getQuantidadeIngressos())
+				.quantidadeIngressosDisponiveis(form.getQuantidadeIngressos())
+				.quantidadeIngressosVendidos(0)
+				.caminhoImagemDoEvento("/imagensDosEventos/imagemPadrao.jpg")
+				.build();
 	}
 
 	public Page<EventoDto> converterParaDto(Page<Evento> eventos) {

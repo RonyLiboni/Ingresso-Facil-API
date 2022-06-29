@@ -1,14 +1,20 @@
 package br.com.IngressoFacilAPI.repositories.cliente_autenticado;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+
 import java.util.List;
 import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
 import br.com.IngressoFacilAPI.repositories.RepositoryTestConfig;
+import br.com.IngressoFacilAPI.util.Util;
 
 class CarrinhoRepositoryTest extends RepositoryTestConfig {
 
@@ -18,7 +24,7 @@ class CarrinhoRepositoryTest extends RepositoryTestConfig {
 	private final String emailQueNaoExiste= "nao existe";
 		
 	@Test
-	void acharPeloEmailDoCliente_DeveRetornarUmaListaComEventosNoCarrinhoDoCliente_QuandoEmailExisteEHaItensNoCarrinho() {
+	void findByClienteEmail_DeveRetornarUmaListaComEventosNoCarrinhoDoCliente_QuandoEmailExisteEHaItensNoCarrinho() {
 		List<Carrinho> carrinho = carrinhoRepository.findByClienteEmail(email);
 		Assertions.assertThat(carrinho).isNotEmpty();
 		Assertions.assertThat(carrinho.size()).isEqualTo(2);
@@ -27,33 +33,53 @@ class CarrinhoRepositoryTest extends RepositoryTestConfig {
 	}
 		
 	@Test
-	void acharPeloEmailDoCliente_DeveRetornarUmaListaVazia_QuandoEmailNaoExiste() {
+	void findByClienteEmail_DeveRetornarUmaListaVazia_QuandoEmailNaoExiste() {
 		Assertions.assertThat(carrinhoRepository.findByClienteEmail(emailQueNaoExiste)).isEmpty();
 	}
 	
 	@Test
-	void acharPeloEmailDoCliente_DeveRetornarUmaListaVazia_QuandoEmailEhNulo() {
+	void findByClienteEmail_DeveRetornarUmaListaVazia_QuandoEmailEhNulo() {
 		Assertions.assertThat(carrinhoRepository.findByClienteEmail(null)).isEmpty();
 	}
 	
 	@Test
-	void acharPeloEmailDoClienteEEventoId_DeveRetornarUmOptionalDeCarrinho_QuandoEmailEEventoIdEstaoCorretosEHaItensNoCarrinho() {
+	void findByEventoIdAndClienteEmail_DeveRetornarUmOptionalDeCarrinho_QuandoEmailEEventoIdEstaoCorretosEHaItensNoCarrinho() {
 		Optional<Carrinho> carrinhoOptional = carrinhoRepository.findByEventoIdAndClienteEmail(1L, email);
 		Assertions.assertThat(carrinhoOptional).isNotEmpty();
 		Assertions.assertThat(carrinhoOptional.get().getQuantidadeIngressos()).isEqualTo(10);
 	}
 
 	@Test
-	void acharPeloEmailDoClienteEEventoId_DeveRetornarUmOptionalDeCarrinhoVazio_QuandoEmailEEventoIdEstaoCorretosENaoHaItensNoCarrinho() {
+	void findByEventoIdAndClienteEmail_DeveRetornarUmOptionalDeCarrinhoVazio_QuandoEmailEEventoIdEstaoCorretosENaoHaItensNoCarrinho() {
 		Assertions.assertThat(carrinhoRepository.findByEventoIdAndClienteEmail(3L, email)).isEmpty();
 	}
 	
 	@Test
-	void acharPeloEmailDoClienteEEventoId_DeveRetornarUmOptionalDeCarrinhoVazio_QuandoEmailOuEventoIdNaoExistem() {
+	void findByEventoIdAndClienteEmail_DeveRetornarUmOptionalDeCarrinhoVazio_QuandoEmailOuEventoIdNaoExistem() {
 		Assertions.assertThat(carrinhoRepository.findByEventoIdAndClienteEmail(-1L, email)).isEmpty();
 		Assertions.assertThat(carrinhoRepository.findByEventoIdAndClienteEmail(1L, emailQueNaoExiste)).isEmpty();
 	}
 	
+	@Test
+	void save_DeveSalvarUmCarrinhoNoBancoDeDados_QuandoReceberUmCarrinhoComTodosAtributosPreenchidos() {
+		Carrinho carrinhoSalvo = carrinhoRepository.save(Util.criarCarrinho());
+		assertThat(carrinhoSalvo.getId()).isNotNull();
+	}
 	
+	@Test
+	void save_DeveLancarException_QuandoReceberUmLocalComNomeOuEnderecoNulos() {
+		assertThatExceptionOfType(DataIntegrityViolationException.class).isThrownBy(()-> carrinhoRepository.save(new Carrinho()));
+	}
+	
+	@Test
+	void delete_DeveDeletarUmLocalNoBancoDeDados_QuandoReceberUmIdQueExiste() {
+		carrinhoRepository.deleteById(1L);
+		assertThat(carrinhoRepository.existsById(1L)).isEqualTo(false);
+	}
+	
+	@Test
+	void delete_DeveJogarException_QuandoReceberUmIdQueNaoExiste() {
+		assertThatExceptionOfType(EmptyResultDataAccessException.class).isThrownBy(() -> carrinhoRepository.deleteById(-1L));
+	}	
 	
 }

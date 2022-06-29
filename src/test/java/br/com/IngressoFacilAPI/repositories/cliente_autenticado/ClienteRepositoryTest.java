@@ -1,13 +1,18 @@
 package br.com.IngressoFacilAPI.repositories.cliente_autenticado;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+
 import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import br.com.IngressoFacilAPI.entities.cliente.Cliente;
 import br.com.IngressoFacilAPI.repositories.RepositoryTestConfig;
+import br.com.IngressoFacilAPI.util.Util;
 
 class ClienteRepositoryTest extends RepositoryTestConfig {
 	
@@ -15,6 +20,7 @@ class ClienteRepositoryTest extends RepositoryTestConfig {
 	private ClienteRepository clienteRepository;
 	private final String email = "teste@teste.com";
 	private final String emailQueNaoExiste= "nao existe";
+	private final String nome = "Teste";
 		
 	@Test
 	void acharPeloEmail_DeveRetornarUmOptionalComCliente_QuandoEmailExiste() {
@@ -53,6 +59,25 @@ class ClienteRepositoryTest extends RepositoryTestConfig {
 	void quantidadeDeIngressosVendidosPorEvento_DeveRetornarNulo_QuandoIdDoEventoNaoExiste() {
 		Assertions.assertThat(clienteRepository.quantidadeDeIngressosVendidosPorEvento(1000l)).isNull();
 	}
+	@Test
+	void findById_DeveRetornarUmCliente_QuandoRecebeUmIdQueExiste() {
+		assertThat(clienteRepository.findById(150L).get().getNome()).isEqualTo(nome);
+	}
 	
+	@Test
+	void findById_DeveRetornarUmOptionalVazio_QuandoRecebeUmIdQueNaoExiste() {
+		assertThat(clienteRepository.findById(-1L).isEmpty()).isEqualTo(true);
+	}
+	
+	@Test
+	void save_DeveSalvarUmClienteNoBancoDeDados_QuandoReceberUmLocalComTodosAtributosPreenchidos() {
+		Cliente clienteSalvo = clienteRepository.save(Util.criarCliente());
+		assertThat(clienteSalvo.getId()).isNotNull();
+	}
+	
+	@Test
+	void save_DeveLancarException_QuandoReceberUmClienteComAtributosNulos() {
+		assertThatExceptionOfType(DataIntegrityViolationException.class).isThrownBy(()-> clienteRepository.save(new Cliente()));
+	}
 
 }

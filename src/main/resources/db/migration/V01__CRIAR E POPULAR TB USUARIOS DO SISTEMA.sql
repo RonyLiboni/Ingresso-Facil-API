@@ -1,4 +1,4 @@
-CREATE TABLE usuario (
+CREATE TABLE USUARIO (
   id BIGINT AUTO_INCREMENT NOT NULL,
   email varchar(255) NOT NULL,
   senha varchar(255) NOT NULL,

@@ -40,9 +40,8 @@ public class Evento {
 	private LocalDate dataEvento;
 	private LocalTime horaEvento;
 	private Integer quantidadeIngressos;
-	@Builder.Default
-	private Integer quantidadeIngressosVendidos=0;
-	private Integer quantidadeIngressosDisponiveis=this.quantidadeIngressos;
+	private Integer quantidadeIngressosVendidos;
+	private Integer quantidadeIngressosDisponiveis;
 	private String caminhoImagemDoEvento;
 
 }
