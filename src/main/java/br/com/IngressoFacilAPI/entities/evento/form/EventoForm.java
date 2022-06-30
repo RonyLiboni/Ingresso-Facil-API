@@ -16,9 +16,11 @@ import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
 import br.com.IngressoFacilAPI.entities.evento.TipoDeEvento;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class EventoForm {
 	
 	@NotBlank (message = "{obrigatorio.nome}")

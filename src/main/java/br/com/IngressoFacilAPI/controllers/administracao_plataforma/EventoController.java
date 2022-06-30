@@ -33,7 +33,7 @@ public class EventoController {
 	@GetMapping
 	@ApiOperation(value = "Retorna uma página com os eventos cadastrados")
 	public ResponseEntity<Page<EventoDto>> listar(@ApiIgnore() @PageableDefault() Pageable paginacao) {
-		return ResponseEntity.status(HttpStatus.OK).body(eventoService.listar(paginacao).map(EventoDto::new));
+		return ResponseEntity.status(HttpStatus.OK).body(eventoService.listarDto(paginacao));
 	}
 
 	@PostMapping
@@ -66,7 +66,7 @@ public class EventoController {
 	public ResponseEntity<String> atualizarImagemDoEvento(@PathVariable Long id,
 			@RequestParam("imagemEvento") MultipartFile imagemEvento) throws Exception {
 		return ResponseEntity.status(HttpStatus.OK)
-				.body("Imagem salva em " + eventoService.atualizarImagemDoEvento(id, imagemEvento));
+				.body(eventoService.atualizarImagemDoEvento(id, imagemEvento));
 	}
 
 }

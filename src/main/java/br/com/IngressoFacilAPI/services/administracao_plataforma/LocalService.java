@@ -28,7 +28,7 @@ public class LocalService {
 	}
 	
 	public Local cadastrar(LocalForm form) {
-		return salvar(form.converterParaLocal());
+		return salvar(converterParaLocal(form));
 	}
 
 	public Local procurarPeloId(Long id) {
@@ -37,14 +37,23 @@ public class LocalService {
 	}
 
 	public Local atualizarCadastro(Long id, LocalForm form) {
-		procurarPeloId(id);
-		return salvar(form.converterParaLocal(id));
+		Local local = procurarPeloId(id);
+		local.setEndereco(form.getEndereco());
+		local.setNome(form.getNome());
+		return salvar(local);
 	}
 
 	@Transactional
 	public void deletarPeloId(Long id) {
 		localRepository.delete(procurarPeloId(id));
 	}
+	
+	private Local converterParaLocal(LocalForm form) {
+        return Local.builder()
+                .nome(form.getNome())
+                .endereco(form.getEndereco())
+                .build();
+    }
 
 	@Override
 	public String toString() {
