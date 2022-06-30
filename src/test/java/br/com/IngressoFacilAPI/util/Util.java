@@ -18,6 +18,7 @@ import br.com.IngressoFacilAPI.entities.Local.Local;
 import br.com.IngressoFacilAPI.entities.Local.form.LocalForm;
 import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
 import br.com.IngressoFacilAPI.entities.cliente.Cliente;
+import br.com.IngressoFacilAPI.entities.cliente.form.ClienteCadastroForm;
 import br.com.IngressoFacilAPI.entities.evento.Evento;
 import br.com.IngressoFacilAPI.entities.evento.TipoDeEvento;
 import br.com.IngressoFacilAPI.entities.evento.form.EventoForm;
@@ -37,6 +38,13 @@ public class Util {
 		.build();
 	}
 	
+	public static LocalForm criarLocalForm() {
+		LocalForm form = new LocalForm();
+		form.setEndereco("TESTE FORM");
+		form.setNome("TESTE FORM");
+		return form;
+	}
+	
 	public static Evento criarEvento() {
 		Local local = criarLocal();
 		local.setId(1L);
@@ -54,6 +62,18 @@ public class Util {
 				.build();
 	}
 	
+	public static EventoForm criarEventoForm() {
+		return EventoForm.builder()
+				.nome("TESTE FORM")
+				.valor(new BigDecimal(150))
+				.tipo(TipoDeEvento.MUSICAL)
+				.localId(1L)
+				.dataEvento(LocalDate.now())
+				.horaEvento(LocalTime.now())
+				.quantidadeIngressos(100)
+				.build();
+	}
+	
 	public static Usuario criarUsuario() {
 		return Usuario.builder()
 				.email("teste@teste.com")
@@ -67,6 +87,13 @@ public class Util {
 				.nome("TESTE")
 				.build();
 	}
+	
+	public static ClienteCadastroForm criarClienteForm() {
+		ClienteCadastroForm clienteCadastroForm = new ClienteCadastroForm();
+		clienteCadastroForm.setEmail("teste@teste.com");
+		clienteCadastroForm.setNome("TESTE FORM");
+		return clienteCadastroForm;
+	}
 
 	public static Carrinho criarCarrinho() {
 		return Carrinho.builder()
@@ -75,13 +102,6 @@ public class Util {
 				.quantidadeIngressos(10)
 				.build();
 	}
-	
-	public static LocalForm criarLocalForm() {
-		LocalForm form = new LocalForm();
-		form.setEndereco("TESTE FORM");
-		form.setNome("TESTE FORM");
-		return form;
-	}
 
 	public static Ingresso criarIngresso() {
 		return Ingresso.builder()
@@ -89,29 +109,19 @@ public class Util {
 				.build();
 	}
 
-	public static EventoForm criarEventoForm() {
-		return EventoForm.builder()
-				.nome("TESTE FORM")
-				.valor(new BigDecimal(150))
-				.tipo(TipoDeEvento.MUSICAL)
-				.localId(1L)
-				.dataEvento(LocalDate.now())
-				.horaEvento(LocalTime.now())
-				.quantidadeIngressos(100)
-				.build();
-	}
-	
 	public static MockMultipartFile criarUmMultiPart() {
 		return new MockMultipartFile("TESTE", "OriginalFileName","PICTURE/PNG",Util.criarEvento().getNome().getBytes());
 	}
+	
 	public static MockMultipartFile criarUmMultiPartVazio() throws FileNotFoundException, IOException {
 		return new MockMultipartFile(null, new FileInputStream(""));
 	}
 
 	public static boolean apagarArquivoTeste(String caminhoDoArquivo) throws IOException {
 		return Files.deleteIfExists(new File(caminhoDoArquivo).toPath());
-		
 	}
+
+
 
 	
 }

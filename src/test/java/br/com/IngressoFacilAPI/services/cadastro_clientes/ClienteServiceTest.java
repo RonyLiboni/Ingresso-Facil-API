@@ -20,6 +20,7 @@ import br.com.IngressoFacilAPI.entities.cliente.Cliente;
 import br.com.IngressoFacilAPI.entities.ingresso.Ingresso;
 import br.com.IngressoFacilAPI.repositories.cliente_autenticado.ClienteRepository;
 import br.com.IngressoFacilAPI.services.ServiceTestConfig;
+import br.com.IngressoFacilAPI.services.envio_de_emails.EmailSenderService;
 import br.com.IngressoFacilAPI.util.Util;
 
 class ClienteServiceTest extends ServiceTestConfig {
@@ -30,11 +31,10 @@ class ClienteServiceTest extends ServiceTestConfig {
 	private ClienteRepository clienteRepositoryMock;
 	@Captor
 	private ArgumentCaptor<Cliente> captor;
-
-//	@Mock
-//	private UsuarioService usuarioServiceMock;
-//	@Mock
-//	private EmailSenderService emailSenderServiceMock; 
+	@Mock
+	private UsuarioService usuarioServiceMock;
+	@Mock
+	private EmailSenderService emailSenderServiceMock; 
 
 	@Test
 	void procurarPeloId_DeveRetornarUmLocal_QuandoIdExiste() {
@@ -58,7 +58,6 @@ class ClienteServiceTest extends ServiceTestConfig {
 		
 		clienteService.adicionarIngresso(List.of(Util.criarIngresso()), "email");
 		
-		
 		BDDMockito.verify(clienteRepositoryMock).save(captor.capture());
 		Cliente cliente = captor.getValue();
 		
@@ -73,11 +72,19 @@ class ClienteServiceTest extends ServiceTestConfig {
 		
 		clienteService.adicionarIngresso(new ArrayList<Ingresso>(), "email");
 		
-		
 		BDDMockito.verify(clienteRepositoryMock).save(captor.capture());
 		Cliente cliente = captor.getValue();
 		
 		assertThat(cliente.getIngressos()).isEmpty();
+	}
+	
+	@Test
+	void cadastrarCliente_DeveRetornarUmCliente_QuandoRecebeUmClienteCadastroFormValidado() {
+		clienteService.cadastrarCliente(Util.criarClienteForm());
+		BDDMockito.verify(clienteRepositoryMock).save(captor.capture());
+		
+		assertThat(captor.getValue().getNome()).isEqualTo(Util.criarClienteForm().getNome());
+		assertThat(captor.getValue()).isExactlyInstanceOf(Cliente.class);
 	}
 	
 
