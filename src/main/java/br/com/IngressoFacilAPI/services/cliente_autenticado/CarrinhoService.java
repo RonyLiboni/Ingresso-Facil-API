@@ -36,7 +36,7 @@ public class CarrinhoService {
 	public Carrinho atualizarCarrinho(CarrinhoForm form, String emailCliente) {
 		Carrinho carrinho = verificaSeExisteEventoNoCarrinho(form, emailCliente);
 		
-		if (form.getQuantidadeIngressos() <= 0) {
+		if (form.getQuantidadeIngressos() < 1) {
 			carrinhoRepository.delete(carrinho);
 			return Carrinho.builder()
 					.eventoId(form.getEventoId())
@@ -45,7 +45,7 @@ public class CarrinhoService {
 					.build();
 		}
 
-		if (carrinhoExisteEQuantidadeDeIngressosEhMaiorQueZero(form, carrinho)) {		
+		if (carrinho.getId() != null) {		
 			carrinho.setQuantidadeIngressos(form.getQuantidadeIngressos());
 			return salvar(carrinho);
 		}
@@ -60,10 +60,6 @@ public class CarrinhoService {
 	private Carrinho verificaSeExisteEventoNoCarrinho(CarrinhoForm form, String emailCliente) {
 		verificaSeEventoExiste(form.getEventoId());
 		return carrinhoRepository.findByEventoIdAndClienteEmail(form.getEventoId(), emailCliente).orElse(new Carrinho());
-	}
-
-	private boolean carrinhoExisteEQuantidadeDeIngressosEhMaiorQueZero(CarrinhoForm form, Carrinho carrinho) {
-		return carrinho.getId() != null	&& form.getQuantidadeIngressos() > 0;
 	}
 	
 	private void verificaSeEventoExiste(Long eventoId) {

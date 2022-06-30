@@ -17,6 +17,7 @@ import org.springframework.mock.web.MockMultipartFile;
 import br.com.IngressoFacilAPI.entities.Local.Local;
 import br.com.IngressoFacilAPI.entities.Local.form.LocalForm;
 import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
+import br.com.IngressoFacilAPI.entities.carrinho.form.CarrinhoForm;
 import br.com.IngressoFacilAPI.entities.cliente.Cliente;
 import br.com.IngressoFacilAPI.entities.cliente.form.ClienteCadastroForm;
 import br.com.IngressoFacilAPI.entities.evento.Evento;
@@ -102,6 +103,20 @@ public class Util {
 				.quantidadeIngressos(10)
 				.build();
 	}
+	
+	public static CarrinhoForm criarCarrinhoFormComQuantidadeZero() {
+		CarrinhoForm carrinhoForm = new CarrinhoForm();
+		carrinhoForm.setEventoId(1L);
+		carrinhoForm.setQuantidadeIngressos(0);
+		return carrinhoForm;
+	}
+	
+	public static CarrinhoForm criarCarrinhoForm() {
+		CarrinhoForm carrinhoForm = new CarrinhoForm();
+		carrinhoForm.setEventoId(1L);
+		carrinhoForm.setQuantidadeIngressos(1);
+		return carrinhoForm;
+	}
 
 	public static Ingresso criarIngresso() {
 		return Ingresso.builder()
@@ -120,6 +135,7 @@ public class Util {
 	public static boolean apagarArquivoTeste(String caminhoDoArquivo) throws IOException {
 		return Files.deleteIfExists(new File(caminhoDoArquivo).toPath());
 	}
+
 
 
 
