@@ -6,8 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
+
+import br.com.IngressoFacilAPI.RepositoryTestConfig;
 import br.com.IngressoFacilAPI.entities.evento.Evento;
-import br.com.IngressoFacilAPI.repositories.RepositoryTestConfig;
 import br.com.IngressoFacilAPI.repositories.cliente_autenticado.ClienteRepository;
 import br.com.IngressoFacilAPI.util.Util;
 

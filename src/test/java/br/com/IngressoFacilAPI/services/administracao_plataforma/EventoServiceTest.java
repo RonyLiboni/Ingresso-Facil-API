@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,17 +18,15 @@ import org.mockito.Mock;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
-import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.CarrinhoVazioException;
+import br.com.IngressoFacilAPI.ControllerAndServiceTestConfig;
 import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.IdNotFoundException;
-import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
 import br.com.IngressoFacilAPI.entities.evento.Evento;
 import br.com.IngressoFacilAPI.entities.evento.dto.EventoDto;
 import br.com.IngressoFacilAPI.repositories.administracao_plataforma.EventoRepository;
 import br.com.IngressoFacilAPI.repositories.cliente_autenticado.ClienteRepository;
-import br.com.IngressoFacilAPI.services.ServiceTestConfig;
 import br.com.IngressoFacilAPI.util.Util;
 
-class EventoServiceTest extends ServiceTestConfig {
+class EventoServiceTest extends ControllerAndServiceTestConfig {
 
 	@InjectMocks
 	private EventoService eventoService;
@@ -93,12 +90,6 @@ class EventoServiceTest extends ServiceTestConfig {
 		assertThat(captor.getValue().getQuantidadeIngressos()).isEqualTo(100);
 		assertThat(captor.getValue().getQuantidadeIngressosDisponiveis()).isEqualTo(90);
 		assertThat(captor.getValue().getQuantidadeIngressosVendidos()).isEqualTo(10);
-	}
-
-	@Test
-	void atualizarQuantidadeDeIngressosDisponiveisNosEventos_QuandoReceberUmaListaDeIngressosVazia() {
-		assertThatExceptionOfType(CarrinhoVazioException.class).isThrownBy(
-				() -> eventoService.atualizarQuantidadeDeIngressosDisponiveisNosEventos(new ArrayList<Carrinho>()));
 	}
 
 	@Test

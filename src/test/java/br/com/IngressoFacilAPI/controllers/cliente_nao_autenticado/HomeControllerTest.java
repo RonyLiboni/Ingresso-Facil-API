@@ -11,12 +11,12 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import br.com.IngressoFacilAPI.ControllerAndServiceTestConfig;
 import br.com.IngressoFacilAPI.entities.evento.dto.EventoHomeDto;
-import br.com.IngressoFacilAPI.services.ServiceTestConfig;
 import br.com.IngressoFacilAPI.services.administracao_plataforma.EventoService;
 import br.com.IngressoFacilAPI.util.Util;
 
-class HomeControllerTest extends ServiceTestConfig{
+class HomeControllerTest extends ControllerAndServiceTestConfig{
 	
 	@InjectMocks
 	private HomeController homeController;

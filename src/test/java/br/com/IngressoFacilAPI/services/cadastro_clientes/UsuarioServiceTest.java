@@ -10,12 +10,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import br.com.IngressoFacilAPI.ControllerAndServiceTestConfig;
 import br.com.IngressoFacilAPI.entities.usuario.Usuario;
 import br.com.IngressoFacilAPI.repositories.autenticacao.UsuarioRepository;
-import br.com.IngressoFacilAPI.services.ServiceTestConfig;
 import br.com.IngressoFacilAPI.util.Util;
 
-class UsuarioServiceTest extends ServiceTestConfig {
+class UsuarioServiceTest extends ControllerAndServiceTestConfig {
 	@InjectMocks
 	private UsuarioService usuarioService;
 	@Mock

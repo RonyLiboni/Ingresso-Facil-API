@@ -12,16 +12,16 @@ import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
+import br.com.IngressoFacilAPI.ControllerAndServiceTestConfig;
 import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.CarrinhoVazioException;
 import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
 import br.com.IngressoFacilAPI.entities.ingresso.Ingresso;
-import br.com.IngressoFacilAPI.services.ServiceTestConfig;
 import br.com.IngressoFacilAPI.services.administracao_plataforma.EventoService;
 import br.com.IngressoFacilAPI.services.cadastro_clientes.ClienteService;
 import br.com.IngressoFacilAPI.services.envio_de_emails.EmailSenderService;
 import br.com.IngressoFacilAPI.util.Util;
 
-class IngressoServiceTest extends ServiceTestConfig {
+class IngressoServiceTest extends ControllerAndServiceTestConfig {
 	@InjectMocks
 	private IngressoService ingressoService;
 	@Mock

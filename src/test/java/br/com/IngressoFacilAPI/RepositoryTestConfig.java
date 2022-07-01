@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.repositories;
+package br.com.IngressoFacilAPI;
 
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
