@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.mock.web.MockMultipartFile;
@@ -75,6 +76,10 @@ public class Util {
 				.build();
 	}
 	
+	public static Page<Evento> criarPageDeEvento() {
+		return new PageImpl<>(List.of(criarEvento()));
+	}
+	
 	public static Usuario criarUsuario() {
 		return Usuario.builder()
 				.email("teste@teste.com")
@@ -135,9 +140,5 @@ public class Util {
 	public static boolean apagarArquivoTeste(String caminhoDoArquivo) throws IOException {
 		return Files.deleteIfExists(new File(caminhoDoArquivo).toPath());
 	}
-
-
-
-
 	
 }
