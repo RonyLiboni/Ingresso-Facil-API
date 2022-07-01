@@ -25,6 +25,7 @@ import br.com.IngressoFacilAPI.entities.evento.Evento;
 import br.com.IngressoFacilAPI.entities.evento.TipoDeEvento;
 import br.com.IngressoFacilAPI.entities.evento.form.EventoForm;
 import br.com.IngressoFacilAPI.entities.ingresso.Ingresso;
+import br.com.IngressoFacilAPI.entities.login.form.LoginForm;
 import br.com.IngressoFacilAPI.entities.usuario.Usuario;
 
 public class Util {	
@@ -139,6 +140,24 @@ public class Util {
 
 	public static boolean apagarArquivoTeste(String caminhoDoArquivo) throws IOException {
 		return Files.deleteIfExists(new File(caminhoDoArquivo).toPath());
+	}
+
+	public static LoginForm criarLoginForm() {
+		LoginForm loginForm = new LoginForm();
+		loginForm.setEmail("teste@teste.com");
+		loginForm.setSenha("$2a$12$KxRyI0kAAQKEgCC..yIc4eVv/AraR1l0osAr783z5WPpbT0pm5y1q");
+		return loginForm;
+	}
+	
+	public static LoginForm criarLoginFormInvalido() {
+		LoginForm loginForm = new LoginForm();
+		loginForm.setEmail("teste@teste.com-TESTE");
+		loginForm.setSenha("teste-teste");
+		return loginForm;
+	}
+	
+	public static String criarToken() {
+		return "BEARER TOKEN-TESTE";
 	}
 	
 }
