@@ -25,7 +25,7 @@ class AutenticacaoControllerTest extends ControllerAndServiceTestConfig {
 	private AuthenticationManager authManagerMock;
 	
 	@Test
-	void autenticar_DeveRetornarUmTokenDto_QuandoDadosDoUsuarioConferemComBancoDeDados() {
+	void autenticar_DeveRetornarUmResponseEntityComStatusOKETokenDto_QuandoDadosDoUsuarioConferemComBancoDeDados() {
 		BDDMockito.when(tokenServiceMock.criarToken(Util.criarLoginForm(), authManagerMock))
 		.thenReturn(Util.criarToken());
 		
