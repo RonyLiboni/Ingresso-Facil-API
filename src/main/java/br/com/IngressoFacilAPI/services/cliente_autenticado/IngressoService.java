@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.CarrinhoVazioException;
 import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
 import br.com.IngressoFacilAPI.entities.evento.Evento;
 import br.com.IngressoFacilAPI.entities.ingresso.Ingresso;
@@ -22,7 +23,10 @@ public class IngressoService {
 	private final EmailSenderService emailSenderService; 
 
 	public List<Ingresso> transformarCarrinhoEmIngresso(List<Carrinho> eventosDoCarrinho, String emailCliente) {
-		List<Ingresso> listaIngressos = new ArrayList<>();
+		if(eventosDoCarrinho.isEmpty())
+			throw new CarrinhoVazioException("Não é possivel transformar Carrinho em Ingressos, pois o carrinho está vazio");
+		
+		List<Ingresso> listaIngressos = new ArrayList<>();		
 		eventosDoCarrinho.forEach(eventoDoCarrinho -> {
 			Evento evento = eventoService.procurarPeloId(eventoDoCarrinho.getEventoId());
 			listaIngressos.add(Ingresso.builder()
