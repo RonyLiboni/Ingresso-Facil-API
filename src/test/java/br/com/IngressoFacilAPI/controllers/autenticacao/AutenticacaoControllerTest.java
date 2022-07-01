@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+
 import br.com.IngressoFacilAPI.ControllerAndServiceTestConfig;
 import br.com.IngressoFacilAPI.entities.token.dto.TokenDto;
 import br.com.IngressoFacilAPI.services.autenticacao.TokenService;
@@ -35,5 +36,7 @@ class AutenticacaoControllerTest extends ControllerAndServiceTestConfig {
 		assertThat(autenticar.getBody().getTipo()).isEqualTo("Bearer");
 		assertThat(autenticar.getBody()).isExactlyInstanceOf(TokenDto.class);		
 	}
+	
+
 
 }

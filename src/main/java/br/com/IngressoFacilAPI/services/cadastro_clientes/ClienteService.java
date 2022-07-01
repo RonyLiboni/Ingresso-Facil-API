@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.IdNotFoundException;
 import br.com.IngressoFacilAPI.entities.cliente.Cliente;
 import br.com.IngressoFacilAPI.entities.cliente.form.ClienteCadastroForm;
 import br.com.IngressoFacilAPI.entities.ingresso.Ingresso;
+import br.com.IngressoFacilAPI.exceptions.IdNotFoundException;
 import br.com.IngressoFacilAPI.repositories.cliente_autenticado.ClienteRepository;
 import br.com.IngressoFacilAPI.services.envio_de_emails.EmailSenderService;
 import br.com.IngressoFacilAPI.services.envio_de_emails.EmailsTemplates;

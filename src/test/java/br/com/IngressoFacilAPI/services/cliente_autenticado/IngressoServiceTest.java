@@ -13,9 +13,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import br.com.IngressoFacilAPI.ControllerAndServiceTestConfig;
-import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.CarrinhoVazioException;
 import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
 import br.com.IngressoFacilAPI.entities.ingresso.Ingresso;
+import br.com.IngressoFacilAPI.exceptions.CarrinhoVazioException;
 import br.com.IngressoFacilAPI.services.administracao_plataforma.EventoService;
 import br.com.IngressoFacilAPI.services.cadastro_clientes.ClienteService;
 import br.com.IngressoFacilAPI.services.envio_de_emails.EmailSenderService;

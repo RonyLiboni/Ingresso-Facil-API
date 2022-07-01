@@ -13,11 +13,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.IdNotFoundException;
 import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
 import br.com.IngressoFacilAPI.entities.evento.Evento;
 import br.com.IngressoFacilAPI.entities.evento.dto.EventoDto;
 import br.com.IngressoFacilAPI.entities.evento.form.EventoForm;
+import br.com.IngressoFacilAPI.exceptions.IdNotFoundException;
 import br.com.IngressoFacilAPI.repositories.administracao_plataforma.EventoRepository;
 import br.com.IngressoFacilAPI.repositories.cliente_autenticado.ClienteRepository;
 import lombok.RequiredArgsConstructor;

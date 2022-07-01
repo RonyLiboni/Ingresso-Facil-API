@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.config.exceptionHandler.exceptions;
+package br.com.IngressoFacilAPI.exceptions;
 
 import java.util.List;
 import br.com.IngressoFacilAPI.entities.semEstoque.dto.SemEstoqueDto;

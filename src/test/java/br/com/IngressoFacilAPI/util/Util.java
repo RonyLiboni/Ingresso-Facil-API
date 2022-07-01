@@ -152,7 +152,7 @@ public class Util {
 	public static LoginForm criarLoginFormInvalido() {
 		LoginForm loginForm = new LoginForm();
 		loginForm.setEmail("teste@teste.com-TESTE");
-		loginForm.setSenha("teste-teste");
+//		loginForm.setSenha("teste-teste");
 		return loginForm;
 	}
 	

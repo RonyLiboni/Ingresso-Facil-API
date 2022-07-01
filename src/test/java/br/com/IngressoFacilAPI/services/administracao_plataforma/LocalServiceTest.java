@@ -15,8 +15,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import br.com.IngressoFacilAPI.ControllerAndServiceTestConfig;
-import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.IdNotFoundException;
 import br.com.IngressoFacilAPI.entities.Local.Local;
+import br.com.IngressoFacilAPI.exceptions.IdNotFoundException;
 import br.com.IngressoFacilAPI.repositories.administracao_plataforma.LocalRepository;
 import br.com.IngressoFacilAPI.util.Util;
 

@@ -6,9 +6,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.IdNotFoundException;
 import br.com.IngressoFacilAPI.entities.Local.Local;
 import br.com.IngressoFacilAPI.entities.Local.form.LocalForm;
+import br.com.IngressoFacilAPI.exceptions.IdNotFoundException;
 import br.com.IngressoFacilAPI.repositories.administracao_plataforma.LocalRepository;
 import lombok.RequiredArgsConstructor;
 

@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.config.exceptionHandler.exceptions;
+package br.com.IngressoFacilAPI.exceptions;
 
 public class CarrinhoVazioException extends RuntimeException {
 	

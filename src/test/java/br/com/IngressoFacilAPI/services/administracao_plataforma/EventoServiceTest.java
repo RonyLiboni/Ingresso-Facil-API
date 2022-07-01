@@ -19,9 +19,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
 import br.com.IngressoFacilAPI.ControllerAndServiceTestConfig;
-import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.IdNotFoundException;
 import br.com.IngressoFacilAPI.entities.evento.Evento;
 import br.com.IngressoFacilAPI.entities.evento.dto.EventoDto;
+import br.com.IngressoFacilAPI.exceptions.IdNotFoundException;
 import br.com.IngressoFacilAPI.repositories.administracao_plataforma.EventoRepository;
 import br.com.IngressoFacilAPI.repositories.cliente_autenticado.ClienteRepository;
 import br.com.IngressoFacilAPI.util.Util;
