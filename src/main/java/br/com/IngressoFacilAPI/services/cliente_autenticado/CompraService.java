@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.CarrinhoVazioException;
 import br.com.IngressoFacilAPI.config.exceptionHandler.exceptions.SemEstoqueException;
 import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
 import br.com.IngressoFacilAPI.entities.ingresso.Ingresso;
@@ -22,6 +23,9 @@ public class CompraService {
 	
 	public List<Ingresso> processoDeCompraDeIngressos(String emailCliente) {
 		List<Carrinho> eventosDoCarrinho = carrinhoService.retornaEventosDoCarrinho(emailCliente);
+		if (eventosDoCarrinho.isEmpty())
+			throw new CarrinhoVazioException("Não é possivel fazer compra, pois não há itens em seu carrinho!");
+		
 		verificaSeHaEstoqueSuficienteParaCompra(eventosDoCarrinho);
 		eventoService.atualizarQuantidadeDeIngressosDisponiveisNosEventos(eventosDoCarrinho);
 		carrinhoService.apagarCarrinhoInteiro(emailCliente);
