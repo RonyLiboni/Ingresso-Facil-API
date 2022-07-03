@@ -33,7 +33,7 @@ public class Util {
 	public static Pageable criarPageable() {
 		return new PageImpl<>(List.of("")).getPageable();
 	}
-	
+		
 	public static Local criarLocal() {
 		return Local.builder()
 		.nome("TESTE")
