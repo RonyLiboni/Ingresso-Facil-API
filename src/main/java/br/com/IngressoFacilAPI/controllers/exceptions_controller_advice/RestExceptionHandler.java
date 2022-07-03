@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.controllers.exceptions_controller;
+package br.com.IngressoFacilAPI.controllers.exceptions_controller_advice;
 
 import java.io.FileNotFoundException;
 import java.sql.SQLIntegrityConstraintViolationException;

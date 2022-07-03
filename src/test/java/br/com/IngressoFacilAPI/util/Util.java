@@ -48,6 +48,10 @@ public class Util {
 		return form;
 	}
 	
+	public static Page<Local> criarPageDeLocal() {
+		return new PageImpl<>(List.of(criarLocal()));
+	}
+	
 	public static Evento criarEvento() {
 		Local local = criarLocal();
 		local.setId(1L);

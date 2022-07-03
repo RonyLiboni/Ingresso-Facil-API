@@ -30,13 +30,13 @@ class EventoControllerTest extends ControllerAndServiceTestConfig {
 		BDDMockito.when(eventoServiceMock.listarDto(ArgumentMatchers.any(Util.criarPageable().getClass())))
 		.thenReturn(Util.criarPageDeEvento().map(EventoDto::new));
 		
-		ResponseEntity<Page<EventoDto>> listar = eventoController.listar(Util.criarPageable());
+		ResponseEntity<Page<EventoDto>> pageEventosDto = eventoController.listar(Util.criarPageable());
 		
-		assertThat(listar.getStatusCode()).isEqualTo(HttpStatus.OK);
-		assertThat(listar.getBody().getSize()).isEqualTo(Util.criarPageDeEvento().getSize());
-		assertThat(listar.getBody()).isExactlyInstanceOf(PageImpl.class);
-		assertThat(listar.getBody().getContent().get(0)).isExactlyInstanceOf(EventoDto.class).isNotNull();
-		assertThat(listar.getBody().getContent().get(0).getNome()).isEqualTo(Util.criarEvento().getNome());
+		assertThat(pageEventosDto.getStatusCode()).isEqualTo(HttpStatus.OK);
+		assertThat(pageEventosDto.getBody().getSize()).isEqualTo(Util.criarPageDeEvento().getSize());
+		assertThat(pageEventosDto.getBody()).isExactlyInstanceOf(PageImpl.class);
+		assertThat(pageEventosDto.getBody().getContent().get(0)).isExactlyInstanceOf(EventoDto.class).isNotNull();
+		assertThat(pageEventosDto.getBody().getContent().get(0).getNome()).isEqualTo(Util.criarEvento().getNome());
 	}
 	
 	@Test
@@ -68,25 +68,21 @@ class EventoControllerTest extends ControllerAndServiceTestConfig {
 		BDDMockito.when(eventoServiceMock.atualizarCadastro(ArgumentMatchers.anyLong(),ArgumentMatchers.any(EventoForm.class)))
 		.thenReturn(Util.criarEvento());
 		
-		ResponseEntity<EventoDto> eventoAchado = eventoController.atualizar(1l, Util.criarEventoForm());
+		ResponseEntity<EventoDto> eventoAtualizado = eventoController.atualizar(1l, Util.criarEventoForm());
 		
-		assertThat(eventoAchado.getStatusCode()).isEqualTo(HttpStatus.OK);
-		assertThat(eventoAchado.getBody()).isExactlyInstanceOf(EventoDto.class);
-		assertThat(eventoAchado.getBody().getNome()).isEqualTo(Util.criarEvento().getNome());		
+		assertThat(eventoAtualizado.getStatusCode()).isEqualTo(HttpStatus.OK);
+		assertThat(eventoAtualizado.getBody()).isExactlyInstanceOf(EventoDto.class);
+		assertThat(eventoAtualizado.getBody().getNome()).isEqualTo(Util.criarEvento().getNome());		
 	}
 	
 	@Test
 	void deletar_DeveRetornarUmResponseEntityComStatusNoContent_QuandoRecebeUmIdDeEventoValido() {		
-		ResponseEntity<Object> statusCodeEventoDeletado = eventoController.deletar(1l);
-		
-		assertThat(statusCodeEventoDeletado.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
+		assertThat(eventoController.deletar(1l).getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 	}
 	
 	@Test
 	void atualizarImagemDoEvento_DeveRetornarUmResponseEntityComStatusOkECaminhoQueImagemFoiSalva_QuandoRecebeUmIdDeEventoValidoEUmaImagem() throws Exception {		
-		ResponseEntity<String> caminhoDaImagem = eventoController.atualizarImagemDoEvento(1l, Util.criarUmMultiPart());
-		
-		assertThat(caminhoDaImagem.getStatusCode()).isEqualTo(HttpStatus.OK);
+			assertThat(eventoController.atualizarImagemDoEvento(1l, Util.criarUmMultiPart()).getStatusCode()).isEqualTo(HttpStatus.OK);
 	}
 	
 	
