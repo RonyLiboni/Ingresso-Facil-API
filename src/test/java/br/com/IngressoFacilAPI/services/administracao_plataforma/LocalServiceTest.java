@@ -14,13 +14,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import br.com.IngressoFacilAPI.ControllerAndServiceTestConfig;
+import br.com.IngressoFacilAPI.config.ServiceTestConfig;
 import br.com.IngressoFacilAPI.entities.Local.Local;
 import br.com.IngressoFacilAPI.exceptions.IdNotFoundException;
 import br.com.IngressoFacilAPI.repositories.administracao_plataforma.LocalRepository;
 import br.com.IngressoFacilAPI.util.Util;
 
-class LocalServiceTest extends ControllerAndServiceTestConfig{
+class LocalServiceTest extends ServiceTestConfig{
 	
 	@InjectMocks
 	private LocalService localService;

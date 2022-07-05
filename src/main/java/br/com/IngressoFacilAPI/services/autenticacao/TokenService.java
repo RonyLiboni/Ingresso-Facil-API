@@ -3,6 +3,7 @@ package br.com.IngressoFacilAPI.services.autenticacao;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,6 +16,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
+@Profile({"default","testes"})
 public class TokenService {
 
 	@Value("${ingressofacilapi.jwt.expiration}")

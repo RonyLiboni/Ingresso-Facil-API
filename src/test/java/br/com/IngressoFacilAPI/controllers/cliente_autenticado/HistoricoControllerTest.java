@@ -13,13 +13,13 @@ import org.mockito.Mock;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import br.com.IngressoFacilAPI.ControllerAndServiceTestConfig;
+import br.com.IngressoFacilAPI.config.ServiceTestConfig;
 import br.com.IngressoFacilAPI.entities.cliente.Cliente;
 import br.com.IngressoFacilAPI.entities.cliente.dto.HistoricoDto;
 import br.com.IngressoFacilAPI.services.cadastro_clientes.ClienteService;
 import br.com.IngressoFacilAPI.util.Util;
 
-class HistoricoControllerTest extends ControllerAndServiceTestConfig {
+class HistoricoControllerTest extends ServiceTestConfig {
 	@InjectMocks
 	private HistoricoController historicoController;
 	@Mock

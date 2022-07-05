@@ -13,13 +13,13 @@ import org.mockito.Mock;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import br.com.IngressoFacilAPI.ControllerAndServiceTestConfig;
+import br.com.IngressoFacilAPI.config.ServiceTestConfig;
 import br.com.IngressoFacilAPI.entities.carrinho.dto.CarrinhoDto;
 import br.com.IngressoFacilAPI.entities.carrinho.form.CarrinhoForm;
 import br.com.IngressoFacilAPI.services.cliente_autenticado.CarrinhoService;
 import br.com.IngressoFacilAPI.util.Util;
 
-class CarrinhoControllerTest extends ControllerAndServiceTestConfig {
+class CarrinhoControllerTest extends ServiceTestConfig {
 	
 	@InjectMocks
 	private CarrinhoController carrinhoController;

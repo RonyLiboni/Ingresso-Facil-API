@@ -10,11 +10,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import br.com.IngressoFacilAPI.ControllerAndServiceTestConfig;
+import br.com.IngressoFacilAPI.config.ServiceTestConfig;
 import br.com.IngressoFacilAPI.repositories.autenticacao.UsuarioRepository;
 import br.com.IngressoFacilAPI.util.Util;
 
-class AutenticacaoServiceTest extends ControllerAndServiceTestConfig{
+class AutenticacaoServiceTest extends ServiceTestConfig{
 	
 	@InjectMocks
 	private AutenticacaoService autenticacaoService;

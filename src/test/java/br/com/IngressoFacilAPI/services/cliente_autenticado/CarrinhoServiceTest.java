@@ -15,13 +15,13 @@ import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import br.com.IngressoFacilAPI.ControllerAndServiceTestConfig;
+import br.com.IngressoFacilAPI.config.ServiceTestConfig;
 import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
 import br.com.IngressoFacilAPI.repositories.cliente_autenticado.CarrinhoRepository;
 import br.com.IngressoFacilAPI.services.administracao_plataforma.EventoService;
 import br.com.IngressoFacilAPI.util.Util;
 
-class CarrinhoServiceTest extends ControllerAndServiceTestConfig {
+class CarrinhoServiceTest extends ServiceTestConfig {
 	@InjectMocks
 	private CarrinhoService carrinhoService;
 	@Mock

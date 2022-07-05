@@ -11,9 +11,9 @@ import org.mockito.Mock;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
-import br.com.IngressoFacilAPI.ControllerAndServiceTestConfig;
+import br.com.IngressoFacilAPI.config.ServiceTestConfig;
 
-class EmailSenderServiceTest extends ControllerAndServiceTestConfig{
+class EmailSenderServiceTest extends ServiceTestConfig{
 
 	@InjectMocks
 	private EmailSenderService emailSenderService;

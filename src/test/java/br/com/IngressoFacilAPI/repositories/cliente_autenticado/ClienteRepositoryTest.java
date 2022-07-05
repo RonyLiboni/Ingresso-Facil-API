@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 
-import br.com.IngressoFacilAPI.RepositoryTestConfig;
+import br.com.IngressoFacilAPI.config.RepositoryTestConfig;
 import br.com.IngressoFacilAPI.entities.cliente.Cliente;
 import br.com.IngressoFacilAPI.util.Util;
 

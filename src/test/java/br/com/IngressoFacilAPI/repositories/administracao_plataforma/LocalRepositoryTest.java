@@ -9,7 +9,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 
-import br.com.IngressoFacilAPI.RepositoryTestConfig;
+import br.com.IngressoFacilAPI.config.RepositoryTestConfig;
 import br.com.IngressoFacilAPI.entities.Local.Local;
 import br.com.IngressoFacilAPI.repositories.cliente_autenticado.ClienteRepository;
 import br.com.IngressoFacilAPI.util.Util;

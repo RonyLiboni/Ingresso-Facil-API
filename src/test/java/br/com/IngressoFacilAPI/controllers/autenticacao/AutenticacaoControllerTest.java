@@ -10,12 +10,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 
-import br.com.IngressoFacilAPI.ControllerAndServiceTestConfig;
+import br.com.IngressoFacilAPI.config.ServiceTestConfig;
 import br.com.IngressoFacilAPI.entities.token.dto.TokenDto;
 import br.com.IngressoFacilAPI.services.autenticacao.TokenService;
 import br.com.IngressoFacilAPI.util.Util;
 
-class AutenticacaoControllerTest extends ControllerAndServiceTestConfig {
+class AutenticacaoControllerTest extends ServiceTestConfig {
 	
 	@InjectMocks
 	private AutenticacaoController autenticacaoController;

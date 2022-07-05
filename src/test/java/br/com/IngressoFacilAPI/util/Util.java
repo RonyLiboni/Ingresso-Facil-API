@@ -75,7 +75,7 @@ public class Util {
 				.valor(new BigDecimal(150))
 				.tipo(TipoDeEvento.MUSICAL)
 				.localId(1L)
-				.dataEvento(LocalDate.now())
+				.dataEvento(LocalDate.of(3000, 12, 12))
 				.horaEvento(LocalTime.now())
 				.quantidadeIngressos(100)
 				.build();
@@ -156,7 +156,7 @@ public class Util {
 	public static LoginForm criarLoginFormInvalido() {
 		LoginForm loginForm = new LoginForm();
 		loginForm.setEmail("teste@teste.com-TESTE");
-//		loginForm.setSenha("teste-teste");
+		loginForm.setSenha("teste-teste-INVALIDAR");
 		return loginForm;
 	}
 	

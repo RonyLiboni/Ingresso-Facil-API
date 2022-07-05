@@ -1,4 +1,4 @@
-package br.com.IngressoFacilAPI.config.security;
+package br.com.IngressoFacilAPI.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,8 +22,8 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @Configuration
 @RequiredArgsConstructor
-@Profile("default")
-public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
+@Profile("testes")
+public class TestSecurityConfigurations extends WebSecurityConfigurerAdapter {
 
 	private final AutenticacaoService autenticacaoService;
 	private final TokenService tokenService;
@@ -45,10 +45,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 				
 		http.authorizeRequests()
-		.antMatchers("/v1/auth", "/v1/home", "/v1/cadastrarCliente").permitAll()
-		.antMatchers("/v1/historico", "/v1/comprar", "/v1/carrinho/**").hasRole("CLIENTE")
-		.antMatchers("/v1/admin/**").hasRole("ADMIN")
-		.anyRequest().authenticated()
+		.antMatchers("/**").permitAll()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 		.and().addFilterBefore(new AutenticacaoViaTokenFilter(tokenService, usuarioRepository), UsernamePasswordAuthenticationFilter.class);

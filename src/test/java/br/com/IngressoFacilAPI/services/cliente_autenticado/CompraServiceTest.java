@@ -11,7 +11,7 @@ import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import br.com.IngressoFacilAPI.ControllerAndServiceTestConfig;
+import br.com.IngressoFacilAPI.config.ServiceTestConfig;
 import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
 import br.com.IngressoFacilAPI.entities.evento.Evento;
 import br.com.IngressoFacilAPI.exceptions.CarrinhoVazioException;
@@ -19,7 +19,7 @@ import br.com.IngressoFacilAPI.exceptions.SemEstoqueException;
 import br.com.IngressoFacilAPI.services.administracao_plataforma.EventoService;
 import br.com.IngressoFacilAPI.util.Util;
 
-class CompraServiceTest extends ControllerAndServiceTestConfig {
+class CompraServiceTest extends ServiceTestConfig {
 	@InjectMocks
 	private CompraService compraService;
 	@Mock

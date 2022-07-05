@@ -10,13 +10,13 @@ import org.mockito.Mock;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import br.com.IngressoFacilAPI.ControllerAndServiceTestConfig;
+import br.com.IngressoFacilAPI.config.ServiceTestConfig;
 import br.com.IngressoFacilAPI.entities.cliente.dto.ClienteDto;
 import br.com.IngressoFacilAPI.entities.cliente.form.ClienteCadastroForm;
 import br.com.IngressoFacilAPI.services.cadastro_clientes.ClienteService;
 import br.com.IngressoFacilAPI.util.Util;
 
-class CadastroClientesControllerTest extends ControllerAndServiceTestConfig {
+class CadastroClientesControllerTest extends ServiceTestConfig {
 	
 	@InjectMocks
 	private CadastroClientesController cadastroClientesController;

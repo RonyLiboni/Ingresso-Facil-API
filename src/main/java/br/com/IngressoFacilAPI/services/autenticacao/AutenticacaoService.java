@@ -1,5 +1,6 @@
 package br.com.IngressoFacilAPI.services.autenticacao;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@Profile({"default","testes"})
 public class AutenticacaoService implements UserDetailsService {
 
 	private final UsuarioRepository usuarioRepository;

@@ -12,13 +12,13 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import br.com.IngressoFacilAPI.ControllerAndServiceTestConfig;
+import br.com.IngressoFacilAPI.config.ServiceTestConfig;
 import br.com.IngressoFacilAPI.entities.Local.dto.LocalDto;
 import br.com.IngressoFacilAPI.entities.Local.form.LocalForm;
 import br.com.IngressoFacilAPI.services.administracao_plataforma.LocalService;
 import br.com.IngressoFacilAPI.util.Util;
 
-class LocalControllerTest extends ControllerAndServiceTestConfig {
+class LocalControllerTest extends ServiceTestConfig {
 	@InjectMocks
 	private LocalController localController;
 	@Mock

@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 
-import br.com.IngressoFacilAPI.RepositoryTestConfig;
+import br.com.IngressoFacilAPI.config.RepositoryTestConfig;
 import br.com.IngressoFacilAPI.entities.carrinho.Carrinho;
 import br.com.IngressoFacilAPI.util.Util;
 

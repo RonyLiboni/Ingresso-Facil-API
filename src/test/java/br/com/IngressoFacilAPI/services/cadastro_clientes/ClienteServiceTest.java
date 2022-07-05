@@ -15,7 +15,7 @@ import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import br.com.IngressoFacilAPI.ControllerAndServiceTestConfig;
+import br.com.IngressoFacilAPI.config.ServiceTestConfig;
 import br.com.IngressoFacilAPI.entities.cliente.Cliente;
 import br.com.IngressoFacilAPI.entities.ingresso.Ingresso;
 import br.com.IngressoFacilAPI.exceptions.IdNotFoundException;
@@ -23,7 +23,7 @@ import br.com.IngressoFacilAPI.repositories.cliente_autenticado.ClienteRepositor
 import br.com.IngressoFacilAPI.services.envio_de_emails.EmailSenderService;
 import br.com.IngressoFacilAPI.util.Util;
 
-class ClienteServiceTest extends ControllerAndServiceTestConfig {
+class ClienteServiceTest extends ServiceTestConfig {
 
 	@InjectMocks
 	private ClienteService clienteService;

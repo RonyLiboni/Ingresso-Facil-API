@@ -13,12 +13,12 @@ import org.mockito.Mock;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import br.com.IngressoFacilAPI.ControllerAndServiceTestConfig;
+import br.com.IngressoFacilAPI.config.ServiceTestConfig;
 import br.com.IngressoFacilAPI.entities.ingresso.dto.IngressoDto;
 import br.com.IngressoFacilAPI.services.cliente_autenticado.CompraService;
 import br.com.IngressoFacilAPI.util.Util;
 
-class CompraControllerTest extends ControllerAndServiceTestConfig {
+class CompraControllerTest extends ServiceTestConfig {
 	@InjectMocks
 	private CompraController compraController;
 	@Mock
