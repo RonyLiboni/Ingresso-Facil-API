@@ -8,8 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import br.com.IngressoFacilAPI.entities.cliente.Cliente;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
-	@Query(value = "SELECT SUM(quantidade_ingressos) FROM cliente_ingressos "
-			+ "WHERE cliente_ingressos.evento_id = :eventoId" ,nativeQuery = true)
+	@Query("SELECT SUM(ing.quantidadeIngressos) FROM Cliente c JOIN c.ingressos ing WHERE ing.evento.id = :eventoId")
 	Integer quantidadeDeIngressosVendidosPorEvento(Long eventoId);
 
 	Optional<Cliente> findByEmail(String email);
