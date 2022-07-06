@@ -19,6 +19,9 @@ http://localhost:8080/swagger-ui.html
   - FlyWay para versionamento do banco de dados (cria e popula o banco de dados ao iniciar o sistema)
   - Documentação com SWAGGER
   - Java Mail Sender para envio de email (ao cadastrar um cliente, utilize seu email para dar certo o envio de emails)
+  -	JUnit e Mockito
+
+## Esta aplicação contém testes unitários
 
 ### Validações
 #### • Em nenhum formulário podem haver dados em branco ou nulos
